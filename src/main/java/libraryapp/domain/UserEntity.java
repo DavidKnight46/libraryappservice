@@ -1,4 +1,4 @@
-package libraryapp.repository;
+package libraryapp.domain;
 
 import lombok.Data;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "libraryserviceuser.users")
+@Table(name = "libraryservice.users")
 @Data
 public class UserEntity {
 

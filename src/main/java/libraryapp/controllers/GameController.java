@@ -1,27 +1,13 @@
 package libraryapp.controllers;
 
-import libraryapp.models.Game;
-import libraryapp.service.GameCollectionService;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Set;
 
-@RestController
-public class GameController {
-
-    private final GameCollectionService service;
-
-    public GameController(GameCollectionService service) {
-        this.service = service;
-    }
+public interface GameController {
 
     @GetMapping(path = "/getGames")
-    @ResponseStatus(HttpStatus.OK)
-    public Set<Game> getGame(@RequestParam String id){
-        return service.getCollection();
-    }
+    String getGame(Model model);
 }

@@ -1,13 +1,13 @@
 package libraryapp.service;
 
-import libraryapp.models.Game;
+import libraryapp.domain.GameEntity;
 import libraryapp.repository.GameRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class GameCollectionService implements CollectionService<Game> {
+public class GameCollectionService implements CollectionService<GameEntity> {
 
     private final GameRepository gameRepository;
 
@@ -16,7 +16,7 @@ public class GameCollectionService implements CollectionService<Game> {
     }
 
     @Override
-    public Set<Game> getCollection() {
+    public Set<GameEntity> getCollection() {
 
         return null;
     }

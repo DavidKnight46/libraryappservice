@@ -1,0 +1,9 @@
+server:
+  servlet:
+    context-path: /libraryservice
+
+spring:
+  jpa:
+    database: mysql
+    show-sql: false
+
