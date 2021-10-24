@@ -1,6 +1,6 @@
-package libraryapp.repository;
+package libraryapp.repository.games;
 
-import libraryapp.domain.GameEntity;
+import libraryapp.repository.entities.games.GameEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

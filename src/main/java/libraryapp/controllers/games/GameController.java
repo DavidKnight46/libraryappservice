@@ -1,4 +1,4 @@
-package libraryapp.controllers;
+package libraryapp.controllers.games;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,6 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public interface GameController {
 
-    @GetMapping(path = "/getGames")
-    String getGame(Model model);
+    @GetMapping(path = "/getGame")
+    String getGame(Model model, int id);
 }

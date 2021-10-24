@@ -1,23 +1,19 @@
-package libraryapp.domain;
+package libraryapp.repository.entities.games;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Table
+@Table(name = "publisher")
 @NoArgsConstructor
-@Data
-public class DeveloperEntity {
+public class PublisherEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
-    private String name;
-
-    @OneToOne(mappedBy = "developer")
+    @OneToOne(mappedBy = "publisher")
     private GameEntity gameEntity;
+
 }

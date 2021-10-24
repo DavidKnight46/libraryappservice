@@ -4,6 +4,13 @@ server:
 
 spring:
   jpa:
-    database: mysql
     show-sql: false
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/libraryservice
+    username: dev
+    password: developer
+    driver-class-name: 'com.mysql.jdbc.Driver'
 

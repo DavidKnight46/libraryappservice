@@ -1,25 +1,24 @@
-package libraryapp.domain;
+package libraryapp.repository.entities;
 
-import lombok.Data;
+import libraryapp.repository.entities.games.GameEntity;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "libraryservice.users")
-@Data
+@Table(name = "users")
 public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "")
+    @Column(name = "username")
     private String userName;
 
-    @Column(name = "")
+    @Column
     private String password;
 
-    @OneToMany(mappedBy = "userId")
+    @OneToMany(mappedBy = "user")
     private List<GameEntity> gameEntity;
 }

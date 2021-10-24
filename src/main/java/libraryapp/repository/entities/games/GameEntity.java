@@ -1,41 +1,32 @@
-package libraryapp.domain;
+package libraryapp.repository.entities.games;
 
-import lombok.Data;
+import libraryapp.repository.entities.UserEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "libraryservice.game")
-@Data
+@Table(name = "game")
 @NoArgsConstructor
 public class GameEntity {
-
-    public GameEntity(String gameName, int rating, Date releaseDate, int userId, DeveloperEntity developer, PublisherEntity publisher) {
-        this.gameName = gameName;
-        this.rating = rating;
-        this.releaseDate = releaseDate;
-        this.userId = userId;
-        this.developer = developer;
-        this.publisher = publisher;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "")
+    @Column
     private String gameName;
 
-    @Column(name = "")
+    @Column
     private int rating;
 
-    @Column(name = "")
+    @Column
     private Date releaseDate;
 
-    @Column(name = "")
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "developer_id", referencedColumnName = "id")
