@@ -1,6 +1,5 @@
-package libraryapp.domain;
+package libraryapp.repository.entities.games;
 
-import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -8,7 +7,6 @@ import javax.persistence.*;
 @Entity
 @Table
 @NoArgsConstructor
-@Data
 public class PublisherEntity {
 
     @Id

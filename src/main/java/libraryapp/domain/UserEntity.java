@@ -1,5 +1,6 @@
 package libraryapp.domain;
 
+import libraryapp.repository.entities.games.GameEntity;
 import lombok.Data;
 
 import javax.persistence.*;
