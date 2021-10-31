@@ -1,6 +1,5 @@
-package libraryapp.repository.entities.games;
+package libraryapp.entities.games;
 
-import libraryapp.repository.entities.UserEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -35,4 +34,28 @@ public class GameEntity {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private PublisherEntity publisher;
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setReleaseDate(Date releaseDate) {
+        this.releaseDate = releaseDate;
+    }
 }

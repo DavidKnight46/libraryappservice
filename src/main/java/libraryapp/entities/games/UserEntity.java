@@ -1,6 +1,4 @@
-package libraryapp.repository.entities;
-
-import libraryapp.repository.entities.games.GameEntity;
+package libraryapp.entities.games;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,4 +1,4 @@
-package libraryapp.domain;
+package libraryapp.entities;
 
 abstract class BaseModel {
     protected String name;

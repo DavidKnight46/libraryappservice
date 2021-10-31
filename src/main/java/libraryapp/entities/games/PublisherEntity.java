@@ -1,4 +1,4 @@
-package libraryapp.repository.entities.games;
+package libraryapp.entities.games;
 
 import lombok.NoArgsConstructor;
 
