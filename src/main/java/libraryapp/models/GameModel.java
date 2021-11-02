@@ -14,6 +14,26 @@ public class GameModel {
 
     private Date releaseDate;
 
+    private DeveloperModel developerModel;
+
+    private PublisherModel publisherModel;
+
+    public DeveloperModel getDeveloperModel() {
+        return developerModel;
+    }
+
+    public void setDeveloperModel(DeveloperModel developerModel) {
+        this.developerModel = developerModel;
+    }
+
+    public PublisherModel getPublisherModel() {
+        return publisherModel;
+    }
+
+    public void setPublisherModel(PublisherModel publisherModel) {
+        this.publisherModel = publisherModel;
+    }
+
     public String getGameName() {
         return gameName;
     }

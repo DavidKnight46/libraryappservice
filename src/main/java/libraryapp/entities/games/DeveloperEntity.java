@@ -1,12 +1,9 @@
 package libraryapp.entities.games;
 
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "developerTable")
-@NoArgsConstructor
+@Table(name = "developer", schema = "libraryservice")
 public class DeveloperEntity {
 
     @Id
@@ -18,4 +15,12 @@ public class DeveloperEntity {
 
     @OneToOne(mappedBy = "developer")
     private GameEntity gameEntity;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

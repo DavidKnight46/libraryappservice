@@ -1,7 +1,9 @@
 package libraryapp.service.games;
 
 import libraryapp.entities.games.GameEntity;
+import libraryapp.models.DeveloperModel;
 import libraryapp.models.GameModel;
+import libraryapp.models.PublisherModel;
 import libraryapp.repository.GameRepository;
 import libraryapp.transformer.GameTransformerImpl;
 import org.springframework.stereotype.Service;
@@ -22,12 +24,10 @@ public class GameServicesImpl implements GameServices<GameModel> {
 
     @Override
     public Set<GameModel> getCollection() {
-        Set<GameModel> collect = gameRepository.findAll().stream().collect(Collectors.toSet())
+        return gameRepository.findAll().stream().collect(Collectors.toSet())
                 .stream()
                 .map(this::mapToGame)
                 .collect(Collectors.toSet());
-
-        return collect;
     }
 
     @Override
@@ -41,6 +41,11 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     private GameModel mapToGame(GameEntity gameEntity) {
-        return gameTransformer.getGameFromEntity(gameEntity);
+        GameModel gameModel = gameTransformer.getGameFromEntity(gameEntity);
+
+        gameModel.setDeveloperModel(new DeveloperModel(gameEntity.getDeveloper().getName()));
+        gameModel.setPublisherModel(new PublisherModel(gameEntity.getPublisher().getName()));
+
+        return gameModel;
     }
 }
