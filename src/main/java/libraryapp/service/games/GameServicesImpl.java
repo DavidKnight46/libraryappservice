@@ -1,10 +1,10 @@
 package libraryapp.service.games;
 
 import libraryapp.entities.games.GameEntity;
-import libraryapp.models.DeveloperModel;
 import libraryapp.models.GameModel;
 import libraryapp.models.PublisherModel;
 import libraryapp.repository.GameRepository;
+import libraryapp.transformer.DeveloperTransformerImpl;
 import libraryapp.transformer.GameTransformerImpl;
 import org.springframework.stereotype.Service;
 
@@ -16,10 +16,12 @@ public class GameServicesImpl implements GameServices<GameModel> {
 
     private final GameRepository gameRepository;
     private GameTransformerImpl gameTransformer;
+    private DeveloperTransformerImpl developerTransformer;
 
     public GameServicesImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
         this.gameTransformer = new GameTransformerImpl();
+        this.developerTransformer = new DeveloperTransformerImpl();
     }
 
     @Override
@@ -43,7 +45,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
     private GameModel mapToGame(GameEntity gameEntity) {
         GameModel gameModel = gameTransformer.getGameFromEntity(gameEntity);
 
-        gameModel.setDeveloperModel(new DeveloperModel(gameEntity.getDeveloper().getName()));
+        gameModel.setDeveloperModel(developerTransformer.toDeveloperModel(gameEntity.getDeveloper()));
         gameModel.setPublisherModel(new PublisherModel(gameEntity.getPublisher().getName()));
 
         return gameModel;

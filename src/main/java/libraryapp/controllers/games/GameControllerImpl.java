@@ -34,8 +34,6 @@ public class GameControllerImpl implements GameController {
     @ResponseBody
     public Set getAllGames(){
         return service.getCollection();
-
     }
-
 
 }
