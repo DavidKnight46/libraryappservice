@@ -14,15 +14,15 @@ public class GameModel {
 
     private Date releaseDate;
 
-    private DeveloperModel developerModel;
+    private DeveloperModelBuilder developerModel;
 
     private PublisherModel publisherModel;
 
-    public DeveloperModel getDeveloperModel() {
+    public DeveloperModelBuilder getDeveloperModel() {
         return developerModel;
     }
 
-    public void setDeveloperModel(DeveloperModel developerModel) {
+    public void setDeveloperModel(DeveloperModelBuilder developerModel) {
         this.developerModel = developerModel;
     }
 

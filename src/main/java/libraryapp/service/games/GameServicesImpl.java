@@ -34,7 +34,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
 
     @Override
     public GameModel getItem(int id) {
-        return gameTransformer.getGameFromEntity(gameRepository.findById(id).orElseThrow());
+       return gameTransformer.getGameFromEntity(gameRepository.findById(id).orElseThrow());
     }
 
     @Override
