@@ -1,4 +1,4 @@
-package libraryapp.controllers.games;
+package libraryapp.controllers.game;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

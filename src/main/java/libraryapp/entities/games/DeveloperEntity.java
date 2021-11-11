@@ -23,4 +23,20 @@ public class DeveloperEntity {
     public void setName(String name) {
         this.name = name;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public GameEntity getGameEntity() {
+        return gameEntity;
+    }
+
+    public void setGameEntity(GameEntity gameEntity) {
+        this.gameEntity = gameEntity;
+    }
 }
