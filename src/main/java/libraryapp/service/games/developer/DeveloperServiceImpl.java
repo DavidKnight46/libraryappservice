@@ -1,8 +1,9 @@
-package libraryapp.service.games;
+package libraryapp.service.games.developer;
 
 import libraryapp.entities.games.DeveloperEntity;
 import libraryapp.models.DeveloperModelBuilder;
 import libraryapp.repository.DeveloperRepository;
+import libraryapp.service.games.game.GameServicesImpl;
 import libraryapp.transformer.DeveloperTransformerImpl;
 import org.springframework.stereotype.Service;
 

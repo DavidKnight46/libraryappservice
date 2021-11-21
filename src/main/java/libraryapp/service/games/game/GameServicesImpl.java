@@ -1,4 +1,4 @@
-package libraryapp.service.games;
+package libraryapp.service.games.game;
 
 import libraryapp.entities.games.GameEntity;
 import libraryapp.models.GameModel;
@@ -45,8 +45,8 @@ public class GameServicesImpl implements GameServices<GameModel> {
     private GameModel mapToGame(GameEntity gameEntity) {
         GameModel gameModel = gameTransformer.getGameFromEntity(gameEntity);
 
-        gameModel.setDeveloperModel(developerTransformer.toDeveloperModel(gameEntity.getDeveloper()));
-        gameModel.setPublisherModel(new PublisherModel(gameEntity.getPublisher().getName()));
+        gameModel.setDeveloper(developerTransformer.toDeveloperModel(gameEntity.getDeveloper()));
+        gameModel.setPublisher(new PublisherModel(gameEntity.getPublisher().getName()));
 
         return gameModel;
     }

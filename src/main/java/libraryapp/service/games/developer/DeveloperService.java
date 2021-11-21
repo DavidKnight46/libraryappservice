@@ -1,4 +1,4 @@
-package libraryapp.service.games;
+package libraryapp.service.games.developer;
 
 import libraryapp.models.DeveloperModelBuilder;
 import org.springframework.web.bind.annotation.PathVariable;

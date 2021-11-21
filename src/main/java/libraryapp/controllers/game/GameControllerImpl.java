@@ -1,14 +1,15 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.GameModel;
-import libraryapp.service.games.GameServices;
-import libraryapp.service.games.GameServicesImpl;
+import libraryapp.service.games.game.GameServices;
+import libraryapp.service.games.game.GameServicesImpl;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
-@RestController("/game")
+@RestController
+@RequestMapping(path="/game")
 public class GameControllerImpl implements GameController {
 
     private final GameServices service;

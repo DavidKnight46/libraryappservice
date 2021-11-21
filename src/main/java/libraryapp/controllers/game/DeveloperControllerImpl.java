@@ -1,7 +1,7 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.DeveloperModelBuilder;
-import libraryapp.service.games.DeveloperService;
+import libraryapp.service.games.developer.DeveloperService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

@@ -1,6 +1,5 @@
-package libraryapp.service.games;
+package libraryapp.service.games.game;
 
-import libraryapp.entities.games.GameEntity;
 import libraryapp.models.GameModel;
 import libraryapp.service.CollectionService;
 

@@ -14,24 +14,24 @@ public class GameModel {
 
     private Date releaseDate;
 
-    private DeveloperModelBuilder developerModel;
+    private DeveloperModelBuilder developer;
 
-    private PublisherModel publisherModel;
+    private PublisherModel publisher;
 
-    public DeveloperModelBuilder getDeveloperModel() {
-        return developerModel;
+    public DeveloperModelBuilder getDeveloper() {
+        return developer;
     }
 
-    public void setDeveloperModel(DeveloperModelBuilder developerModel) {
-        this.developerModel = developerModel;
+    public void setDeveloper(DeveloperModelBuilder developer) {
+        this.developer = developer;
     }
 
-    public PublisherModel getPublisherModel() {
-        return publisherModel;
+    public PublisherModel getPublisher() {
+        return publisher;
     }
 
-    public void setPublisherModel(PublisherModel publisherModel) {
-        this.publisherModel = publisherModel;
+    public void setPublisher(PublisherModel publisher) {
+        this.publisher = publisher;
     }
 
     public String getGameName() {

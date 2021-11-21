@@ -1,5 +1,6 @@
 package libraryapp.entities.games;
 
+import libraryapp.entities.user.UserEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
