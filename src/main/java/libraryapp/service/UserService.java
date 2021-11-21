@@ -17,7 +17,5 @@ public class UserService {
 
     public boolean checkUser(String userName, String password) {
         return userRepository.findUserEntityByUserNameAndPassword(userName, password).isPresent();
-
-        //return userTransformer.fromUserEntity(userEntityByUserNameAndPassword.get());
     }
 }
