@@ -18,7 +18,7 @@ public class GameControllerImpl implements GameController {
         this.service = service;
     }
 
-    @GetMapping(path = "/getGame")
+    @Override
     public String getGame(Model model, @RequestParam int id) {
         Set<GameModel> collection = service.getCollection();
 
@@ -27,8 +27,7 @@ public class GameControllerImpl implements GameController {
         return "game";
     }
 
-    @GetMapping(path = "/getAllGames")
-    @ResponseBody
+    @Override
     public Set getAllGames(){
         return service.getCollection();
     }
