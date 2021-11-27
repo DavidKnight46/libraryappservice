@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 
-@Builder
+//@Builder
 @NoArgsConstructor
 public class DeveloperModelBuilder {
 

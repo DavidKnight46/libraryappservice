@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-@Builder
 @NoArgsConstructor
 public class GameModel {
     private String gameName;
