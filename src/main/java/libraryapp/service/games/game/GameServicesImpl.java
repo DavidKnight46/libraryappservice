@@ -8,6 +8,8 @@ import libraryapp.transformer.DeveloperTransformerImpl;
 import libraryapp.transformer.GameTransformerImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -26,7 +28,10 @@ public class GameServicesImpl implements GameServices<GameModel> {
 
     @Override
     public Set<GameModel> getCollection() {
-        return gameRepository.findAll().stream().collect(Collectors.toSet())
+        return gameRepository
+                .findAll()
+                .stream()
+                .collect(Collectors.toSet())
                 .stream()
                 .map(this::mapToGame)
                 .collect(Collectors.toSet());
@@ -38,8 +43,29 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public GameModel findGameByDev() {
-        return null;
+    public List<GameModel> findGamesByDev_Name(String developerName) {
+        Optional<List<GameEntity>> byDeveloper = gameRepository.findByDeveloper_Name(developerName);
+
+        return byDeveloper
+                .orElseThrow()
+                .stream()
+                .map(this::toGame)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GameModel> findGamesByPub_Name(String publisherName) {
+        Optional<List<GameEntity>> byPublisher_name = gameRepository.findByPublisher_Name(publisherName);
+
+        return byPublisher_name
+                .orElseThrow()
+                .stream()
+                .map(this::toGame)
+                .collect(Collectors.toList());
+    }
+
+    private GameModel toGame(GameEntity gameEntity){
+        return gameTransformer.getGameFromEntity(gameEntity);
     }
 
     private GameModel mapToGame(GameEntity gameEntity) {

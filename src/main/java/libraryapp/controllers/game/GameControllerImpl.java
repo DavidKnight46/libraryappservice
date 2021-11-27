@@ -6,6 +6,7 @@ import libraryapp.service.games.game.GameServicesImpl;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -30,6 +31,11 @@ public class GameControllerImpl implements GameController {
     @Override
     public Set getAllGames(){
         return service.getCollection();
+    }
+
+    @Override
+    public List<GameModel> getAllGameByDeveloper(String developerName) {
+        return service.findGamesByDev_Name(developerName);
     }
 
 }

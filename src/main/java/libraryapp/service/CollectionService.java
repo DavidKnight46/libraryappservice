@@ -7,4 +7,5 @@ public interface CollectionService<T> {
     Set<T> getCollection();
 
     T getItem(int id);
+
 }
