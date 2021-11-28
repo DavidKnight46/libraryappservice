@@ -4,21 +4,23 @@ import libraryapp.entities.games.GameEntity;
 import libraryapp.models.GameModel;
 import libraryapp.models.PublisherModel;
 import libraryapp.repository.GameRepository;
+import libraryapp.service.Order;
+import libraryapp.service.SortBy;
 import libraryapp.transformer.DeveloperTransformerImpl;
 import libraryapp.transformer.GameTransformerImpl;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 public class GameServicesImpl implements GameServices<GameModel> {
 
     private final GameRepository gameRepository;
-    private GameTransformerImpl gameTransformer;
-    private DeveloperTransformerImpl developerTransformer;
+    private final GameTransformerImpl gameTransformer;
+    private final DeveloperTransformerImpl developerTransformer;
+
+    private Set<GameModel> setOfGames;
 
     public GameServicesImpl(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
@@ -27,14 +29,31 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public Set<GameModel> getCollection() {
-        return gameRepository
-                .findAll()
-                .stream()
-                .collect(Collectors.toSet())
-                .stream()
-                .map(this::mapToGame)
-                .collect(Collectors.toSet());
+    public Set<GameModel> getCollection(SortBy sortBy, Order order) {
+
+        switch (sortBy){
+            case NAME: System.out.println("");
+                break;
+            case RATING: sortByRating();
+                break;
+            case RELEASE_DATE: System.out.println("world");
+                break;
+            default:
+                break;
+        }
+
+        if(order == Order.DESC){
+            List<GameEntity> collect = gameRepository.findAll().stream().sorted(new GameComparator()).collect(Collectors.toList());
+
+            Collections.reverse(collect);
+
+            return collect
+                    .stream()
+                    .map(this::mapToGame)
+                    .collect(Collectors.toSet());
+        } else {
+            return setOfGames;
+        }
     }
 
     @Override
@@ -76,4 +95,14 @@ public class GameServicesImpl implements GameServices<GameModel> {
 
         return gameModel;
     }
+
+    private void sortByRating(){
+        setOfGames = gameRepository
+                .findAll()
+                .stream()
+                .sorted(new GameComparator())
+                .map(this::mapToGame)
+                .collect(Collectors.toSet());
+    }
+
 }

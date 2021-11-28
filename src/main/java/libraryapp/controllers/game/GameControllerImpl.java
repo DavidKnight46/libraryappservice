@@ -1,6 +1,8 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.GameModel;
+import libraryapp.service.Order;
+import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServices;
 import libraryapp.service.games.game.GameServicesImpl;
 import org.springframework.ui.Model;
@@ -21,7 +23,7 @@ public class GameControllerImpl implements GameController {
 
     @Override
     public String getGame(Model model, @RequestParam int id) {
-        Set<GameModel> collection = service.getCollection();
+        //Set<GameModel> collection = service.getCollection();
 
         model.addAttribute("game", "HZD");
 
@@ -29,8 +31,9 @@ public class GameControllerImpl implements GameController {
     }
 
     @Override
-    public Set getAllGames(){
-        return service.getCollection();
+    public Set getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
+                           @RequestParam(name = "order", required = false) Order order){
+        return service.getCollection(sortBy, order);
     }
 
     @Override

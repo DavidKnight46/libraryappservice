@@ -13,7 +13,7 @@ public class DeveloperEntity {
     @Column
     private String name;
 
-    @OneToOne(mappedBy = "developer")
+    @OneToOne(mappedBy = "developer", fetch = FetchType.LAZY)
     private GameEntity gameEntity;
 
     public String getName() {
