@@ -19,9 +19,9 @@ public interface GameController {
     String getGame(Model model, @RequestParam int id);
 
     @GetMapping(path = "/getAllGames")
-    Set getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
-                    @RequestParam(name = "order", required = false) Order order);
+    List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
+                                @RequestParam(name = "order", required = false) Order order);
 
-    @GetMapping(path = "/getAllGamesByDeveloper/{developerName}")
+    @GetMapping(path = "/getAllGames/{developerName}")
     List<GameModel> getAllGameByDeveloper(@PathVariable(value = "developerName") String developerName);
 }

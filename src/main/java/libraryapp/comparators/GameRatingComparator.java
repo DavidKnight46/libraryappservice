@@ -1,10 +1,10 @@
-package libraryapp.service.games.game;
+package libraryapp.comparators;
 
 import libraryapp.entities.games.GameEntity;
 
 import java.util.Comparator;
 
-public class GameComparator implements Comparator<GameEntity> {
+public class GameRatingComparator implements Comparator<GameEntity> {
 
     @Override
     public int compare(GameEntity o1, GameEntity o2) {
