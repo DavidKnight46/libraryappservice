@@ -3,6 +3,7 @@ package libraryapp.models;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -11,7 +12,7 @@ public class GameModel {
 
     private int rating;
 
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     private DeveloperModelBuilder developer;
 
@@ -41,7 +42,7 @@ public class GameModel {
         return rating;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
@@ -53,7 +54,7 @@ public class GameModel {
         this.rating = rating;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 }

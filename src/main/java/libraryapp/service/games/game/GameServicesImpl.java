@@ -2,6 +2,7 @@ package libraryapp.service.games.game;
 
 import libraryapp.comparators.GameNameComparator;
 import libraryapp.comparators.GameRatingComparator;
+import libraryapp.comparators.GameReleaseDateComparator;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.models.GameModel;
 import libraryapp.models.PublisherModel;
@@ -38,7 +39,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
                 break;
             case RATING: sortByRating();
                 break;
-            case RELEASE_DATE: System.out.println("world");
+            case RELEASE_DATE: sortByReleaseDate();
                 break;
             default:
                 break;
@@ -111,6 +112,15 @@ public class GameServicesImpl implements GameServices<GameModel> {
                 .findAll()
                 .stream()
                 .sorted(new GameNameComparator())
+                .map(this::toGame)
+                .collect(Collectors.toList());
+    }
+
+    private void sortByReleaseDate(){
+        listOfGames = gameRepository
+                .findAll()
+                .stream()
+                .sorted(new GameReleaseDateComparator())
                 .map(this::toGame)
                 .collect(Collectors.toList());
     }

@@ -4,6 +4,7 @@ import libraryapp.entities.user.UserEntity;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -22,7 +23,7 @@ public class GameEntity {
     private int rating;
 
     @Column
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,7 +45,7 @@ public class GameEntity {
         return rating;
     }
 
-    public Date getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate;
     }
 
@@ -56,7 +57,7 @@ public class GameEntity {
         this.rating = rating;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate = releaseDate;
     }
 
