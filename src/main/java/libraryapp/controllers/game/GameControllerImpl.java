@@ -6,13 +6,14 @@ import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServices;
 import libraryapp.service.games.game.GameServicesImpl;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
-@RequestMapping(path="/game")
+@RequestMapping(path = "/game")
 public class GameControllerImpl implements GameController {
 
     private final GameServices service;
@@ -32,7 +33,7 @@ public class GameControllerImpl implements GameController {
 
     @Override
     public List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
-                                       @RequestParam(name = "order", required = false) Order order){
+                                       @RequestParam(name = "order", required = false) Order order) {
         return service.getCollection(sortBy, order);
     }
 
