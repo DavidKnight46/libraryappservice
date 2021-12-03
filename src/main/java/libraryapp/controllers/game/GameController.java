@@ -4,10 +4,7 @@ import libraryapp.models.GameModel;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Set;
@@ -20,8 +17,13 @@ public interface GameController {
 
     @GetMapping(path = "/getAllGames")
     List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
-                                @RequestParam(name = "order", required = false) Order order);
+                                @RequestParam(name = "order", required = false) Order order,
+                                @RequestParam(name = "userId", required = false) int userId);
 
     @GetMapping(path = "/getAllGames/{developerName}")
     List<GameModel> getAllGameByDeveloper(@PathVariable(value = "developerName") String developerName);
+
+    @PostMapping(path = "/addGame")
+    void addGameToLibrary(@RequestBody GameModel gameModel,
+                          @RequestParam(name = "userId", required = false) int userId);
 }

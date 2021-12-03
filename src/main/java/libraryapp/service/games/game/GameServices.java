@@ -10,4 +10,6 @@ public interface GameServices<T> extends CollectionService<GameModel> {
 
     List<T> findGamesByPub_Name(String developerName);
 
+    void addGame(GameModel gameModel, int userId);
+
 }

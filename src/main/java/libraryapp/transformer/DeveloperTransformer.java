@@ -1,7 +1,7 @@
 package libraryapp.transformer;
 
 import libraryapp.entities.games.DeveloperEntity;
-import libraryapp.models.DeveloperModelBuilder;
+import libraryapp.models.DeveloperModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -11,8 +11,8 @@ import org.mapstruct.Mappings;
 public interface DeveloperTransformer {
 
     @Mappings({@Mapping(source = "developerEntity.name", target= "name")})
-    DeveloperModelBuilder toDeveloperModel(DeveloperEntity developerEntity);
+    DeveloperModel toDeveloperModel(DeveloperEntity developerEntity);
 
     //@Mappings({@Mapping(source = "developerModel.name", target= "name")})
-    DeveloperEntity fromDeveloperModel(DeveloperModelBuilder developerModel);
+    DeveloperEntity fromDeveloperModel(DeveloperModel developerModel);
 }

@@ -33,8 +33,9 @@ public class GameControllerImpl implements GameController {
 
     @Override
     public List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
-                                       @RequestParam(name = "order", required = false) Order order) {
-        return service.getCollection(sortBy, order);
+                                       @RequestParam(name = "order", required = false) Order order,
+                                       @RequestParam(name = "userId", required = false) int userId) {
+        return service.getCollection(sortBy, order, userId);
     }
 
     @Override
@@ -42,4 +43,9 @@ public class GameControllerImpl implements GameController {
         return service.findGamesByDev_Name(developerName);
     }
 
+    @Override
+    public void addGameToLibrary(GameModel gameModel,
+                                 @RequestParam(name = "userId", required = false) int userId) {
+        service.addGame(gameModel, userId);
+    }
 }

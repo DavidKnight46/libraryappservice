@@ -1,7 +1,7 @@
 package libraryapp.service.games.developer;
 
 import libraryapp.entities.games.DeveloperEntity;
-import libraryapp.models.DeveloperModelBuilder;
+import libraryapp.models.DeveloperModel;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.service.games.game.GameServicesImpl;
 import libraryapp.transformer.DeveloperTransformerImpl;
@@ -24,7 +24,7 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public List<DeveloperModelBuilder> getDeveloper() {
+    public List<DeveloperModel> getDeveloper() {
         return developerRepository.findAll()
                 .stream()
                 .map(this::createDeveloperModelBuilder)
@@ -32,12 +32,12 @@ public class DeveloperServiceImpl implements DeveloperService {
     }
 
     @Override
-    public void addDeveloper(DeveloperModelBuilder developerModel) {
+    public void addDeveloper(DeveloperModel developerModel) {
         developerRepository.save(developerTransformer.fromDeveloperModel(developerModel));
     }
 
     @Override
-    public void update(String developerId, DeveloperModelBuilder developerModel) {
+    public void update(String developerId, DeveloperModel developerModel) {
         DeveloperEntity developerEntity = developerTransformer.fromDeveloperModel(developerModel);
 
         developerEntity.setId(Integer.parseInt(developerId));
@@ -50,7 +50,7 @@ public class DeveloperServiceImpl implements DeveloperService {
         developerRepository.deleteById(Integer.parseInt(developerId));
     }
 
-    private DeveloperModelBuilder createDeveloperModelBuilder(DeveloperEntity builderModel){
+    private DeveloperModel createDeveloperModelBuilder(DeveloperEntity builderModel){
         return developerTransformer.toDeveloperModel(builderModel);
     }
 }

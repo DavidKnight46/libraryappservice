@@ -1,5 +1,8 @@
 package libraryapp.comparators;
 
+import libraryapp.comparators.game.GameNameComparator;
+import libraryapp.comparators.game.GameRatingComparator;
+import libraryapp.comparators.game.GameReleaseDateComparator;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.models.GameModel;
 import libraryapp.models.PublisherModel;
@@ -9,6 +12,7 @@ import libraryapp.transformer.GameTransformerImpl;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -31,10 +35,6 @@ public class ComparatorSorting {
         return listOfGames;
     }
 
-    public GameModel toGame(GameEntity gameEntity) {
-        return gameTransformer.getGameFromEntity(gameEntity);
-    }
-
     public GameModel mapToGame(GameEntity gameEntity) {
         GameModel gameModel = gameTransformer.getGameFromEntity(gameEntity);
 
@@ -48,30 +48,25 @@ public class ComparatorSorting {
         Collections.reverse(listOfGames);
     }
 
-    public void sortByRating() {
+    public void sortByRating(int userId) {
+        sortBy(new GameRatingComparator(), userId);
+    }
+
+    public void sortByName(int userId) {
+        sortBy(new GameNameComparator(), userId);
+    }
+
+    public void sortByReleaseDate(int userId) {
+        sortBy(new GameReleaseDateComparator(), userId);
+    }
+
+    private void sortBy(Comparator<GameEntity> comparator, int userId) {
         listOfGames = gameRepository
-                .findAll()
+                .findByUserId(userId)
+                .get()
                 .stream()
-                .sorted(new GameRatingComparator())
+                .sorted(comparator)
                 .map(this::mapToGame)
-                .collect(Collectors.toList());
-    }
-
-    public void sortByName() {
-        listOfGames = gameRepository
-                .findAll()
-                .stream()
-                .sorted(new GameNameComparator())
-                .map(this::toGame)
-                .collect(Collectors.toList());
-    }
-
-    public void sortByReleaseDate() {
-        listOfGames = gameRepository
-                .findAll()
-                .stream()
-                .sorted(new GameReleaseDateComparator())
-                .map(this::toGame)
                 .collect(Collectors.toList());
     }
 }

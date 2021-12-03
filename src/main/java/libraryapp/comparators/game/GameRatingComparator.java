@@ -1,4 +1,4 @@
-package libraryapp.comparators;
+package libraryapp.comparators.game;
 
 import libraryapp.entities.games.GameEntity;
 

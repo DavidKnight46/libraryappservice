@@ -1,10 +1,8 @@
 package libraryapp.models;
 
-import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @NoArgsConstructor
 public class GameModel {
@@ -14,15 +12,15 @@ public class GameModel {
 
     private LocalDate releaseDate;
 
-    private DeveloperModelBuilder developer;
+    private DeveloperModel developer;
 
     private PublisherModel publisher;
 
-    public DeveloperModelBuilder getDeveloper() {
+    public DeveloperModel getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(DeveloperModelBuilder developer) {
+    public void setDeveloper(DeveloperModel developer) {
         this.developer = developer;
     }
 

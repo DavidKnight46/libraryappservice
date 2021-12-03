@@ -1,12 +1,15 @@
 package libraryapp.service.games.game;
 
 import libraryapp.comparators.ComparatorSorting;
+import libraryapp.entities.games.DeveloperEntity;
 import libraryapp.entities.games.GameEntity;
+import libraryapp.entities.user.UserEntity;
 import libraryapp.models.GameModel;
+import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
+import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
-import libraryapp.transformer.DeveloperTransformerImpl;
 import libraryapp.transformer.GameTransformerImpl;
 import org.springframework.stereotype.Service;
 
@@ -18,29 +21,34 @@ import java.util.stream.Collectors;
 public class GameServicesImpl implements GameServices<GameModel> {
 
     private final GameRepository gameRepository;
+    private final UserRepository userRepository;
+    private final DeveloperRepository developerRepository;
     private final GameTransformerImpl gameTransformer;
-    private final DeveloperTransformerImpl developerTransformer;
     private final ComparatorSorting comparatorSorting;
 
-    public GameServicesImpl(GameRepository gameRepository, ComparatorSorting comparatorSorting) {
+    public GameServicesImpl(GameRepository gameRepository,
+                            ComparatorSorting comparatorSorting,
+                            UserRepository userRepository,
+                            DeveloperRepository developerRepository) {
         this.gameRepository = gameRepository;
-        this.gameTransformer = new GameTransformerImpl();
-        this.developerTransformer = new DeveloperTransformerImpl();
         this.comparatorSorting = comparatorSorting;
+        this.userRepository = userRepository;
+        this.developerRepository = developerRepository;
+        this.gameTransformer = new GameTransformerImpl();
     }
 
     @Override
-    public List<GameModel> getCollection(SortBy sortBy, Order order) {
+    public List<GameModel> getCollection(SortBy sortBy, Order order, int userId) {
 
         switch (sortBy) {
             case NAME:
-                comparatorSorting.sortByName();
+                comparatorSorting.sortByName(userId);
                 break;
             case RATING:
-                comparatorSorting.sortByRating();
+                comparatorSorting.sortByRating(userId);
                 break;
             case RELEASE_DATE:
-                comparatorSorting.sortByReleaseDate();
+                comparatorSorting.sortByReleaseDate(userId);
                 break;
             default:
                 break;
@@ -70,7 +78,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
         return byDeveloper
                 .orElseThrow()
                 .stream()
-                .map(comparatorSorting::toGame)
+                .map(comparatorSorting::mapToGame)
                 .collect(Collectors.toList());
     }
 
@@ -81,8 +89,20 @@ public class GameServicesImpl implements GameServices<GameModel> {
         return byPublisher_name
                 .orElseThrow()
                 .stream()
-                .map(comparatorSorting::toGame)
+                .map(comparatorSorting::mapToGame)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addGame(GameModel gameModel, int userId) {
+       DeveloperEntity developerEntity = developerRepository.findByName(gameModel.getDeveloper().getName()).get();
+
+        GameEntity entityFromGame = gameTransformer.getEntityFromGame(gameModel);
+
+        entityFromGame.setUser(userRepository.findById(userId).get());
+        entityFromGame.setDeveloper(developerEntity);
+
+        gameRepository.save(entityFromGame);
     }
 
 }

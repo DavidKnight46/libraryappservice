@@ -13,4 +13,6 @@ public interface GameRepository extends JpaRepository<GameEntity, Integer> {
     Optional<List<GameEntity>> findByDeveloper_Name(String developerName);
 
     Optional<List<GameEntity>> findByPublisher_Name(String publisherName);
+
+    Optional<List<GameEntity>> findByUserId(Integer integer);
 }

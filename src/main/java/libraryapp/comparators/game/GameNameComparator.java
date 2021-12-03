@@ -1,8 +1,7 @@
-package libraryapp.comparators;
+package libraryapp.comparators.game;
 
 import libraryapp.entities.games.GameEntity;
 
-import java.util.Collections;
 import java.util.Comparator;
 
 public class GameNameComparator implements Comparator<GameEntity> {
