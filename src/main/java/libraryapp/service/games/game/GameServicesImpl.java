@@ -95,12 +95,12 @@ public class GameServicesImpl implements GameServices<GameModel> {
 
     @Override
     public void addGame(GameModel gameModel, int userId) {
-       DeveloperEntity developerEntity = developerRepository.findByName(gameModel.getDeveloper().getName()).get();
+        Optional<DeveloperEntity> byId = developerRepository.findById(userId);
 
         GameEntity entityFromGame = gameTransformer.getEntityFromGame(gameModel);
 
         entityFromGame.setUser(userRepository.findById(userId).get());
-        entityFromGame.setDeveloper(developerEntity);
+        entityFromGame.setDeveloper(byId.get());
 
         gameRepository.save(entityFromGame);
     }
