@@ -1,5 +1,6 @@
 package libraryapp.service.user;
 
+import libraryapp.models.UserModel;
 import libraryapp.repository.UserRepository;
 import libraryapp.transformer.UserTransformerImpl;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean checkUser(String userName, String password) {
         return userRepository.findUserEntityByUserNameAndPassword(userName, password).isPresent();
+    }
+
+    @Override
+    public void addUser(UserModel user) {
+        userRepository.save(userTransformer.toUserEntity(user));
+    }
+
+    @Override
+    public void deleteUser(String userId) {
+        userRepository.deleteById(Integer.parseInt(userId));
     }
 }
