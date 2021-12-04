@@ -13,6 +13,5 @@ public interface DeveloperTransformer {
     @Mappings({@Mapping(source = "developerEntity.name", target= "name")})
     DeveloperModel toDeveloperModel(DeveloperEntity developerEntity);
 
-    //@Mappings({@Mapping(source = "developerModel.name", target= "name")})
     DeveloperEntity fromDeveloperModel(DeveloperModel developerModel);
 }
