@@ -45,7 +45,9 @@ public class GameControllerImpl implements GameController {
 
     @Override
     public void addGameToLibrary(GameModel gameModel,
-                                 @RequestParam(name = "userId", required = false) int userId) {
-        service.addGame(gameModel, userId);
+                                 @RequestParam(name = "userId", required = false) int userId,
+                                 @RequestParam(name = "developerId", required = false) int developerId,
+                                 @RequestParam(name = "publisherId", required = false) int publisherId) {
+        service.addGame(gameModel, userId, developerId, publisherId);
     }
 }

@@ -25,5 +25,7 @@ public interface GameController {
 
     @PostMapping(path = "/addGame")
     void addGameToLibrary(@RequestBody GameModel gameModel,
-                          @RequestParam(name = "userId", required = false) int userId);
+                          @RequestParam(name = "userId", required = false) int userId,
+                          @RequestParam(name = "developerId", required = false) int developerId,
+                          @RequestParam(name = "publisherId", required = false) int publisherId);
 }

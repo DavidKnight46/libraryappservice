@@ -7,6 +7,7 @@ import libraryapp.entities.user.UserEntity;
 import libraryapp.models.GameModel;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
+import libraryapp.repository.PublisherRepository;
 import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
@@ -23,18 +24,22 @@ public class GameServicesImpl implements GameServices<GameModel> {
     private final GameRepository gameRepository;
     private final UserRepository userRepository;
     private final DeveloperRepository developerRepository;
-    private final GameTransformerImpl gameTransformer;
+    private final PublisherRepository publisherRepository;
     private final ComparatorSorting comparatorSorting;
+    private final GameTransformerImpl gameTransformer;
+
 
     public GameServicesImpl(GameRepository gameRepository,
                             ComparatorSorting comparatorSorting,
                             UserRepository userRepository,
-                            DeveloperRepository developerRepository) {
+                            DeveloperRepository developerRepository,
+                            PublisherRepository publisherRepository) {
         this.gameRepository = gameRepository;
         this.comparatorSorting = comparatorSorting;
         this.userRepository = userRepository;
         this.developerRepository = developerRepository;
         this.gameTransformer = new GameTransformerImpl();
+        this.publisherRepository = publisherRepository;
     }
 
     @Override
@@ -94,15 +99,14 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public void addGame(GameModel gameModel, int userId) {
-        Optional<DeveloperEntity> byId = developerRepository.findById(userId);
+    public void addGame(GameModel gameModel, int userId, int developerId, int publisherId) {
+        GameEntity gameEntity = gameTransformer.getEntityFromGame(gameModel);
 
-        GameEntity entityFromGame = gameTransformer.getEntityFromGame(gameModel);
+        gameEntity.setUser(userRepository.findById(userId).get());
+        gameEntity.setDeveloper(developerRepository.findById(developerId).get());
+        gameEntity.setPublisher(publisherRepository.findById(publisherId).get());
 
-        entityFromGame.setUser(userRepository.findById(userId).get());
-        entityFromGame.setDeveloper(byId.get());
-
-        gameRepository.save(entityFromGame);
+        gameRepository.save(gameEntity);
     }
 
 }
