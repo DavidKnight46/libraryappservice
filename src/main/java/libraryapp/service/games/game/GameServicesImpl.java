@@ -1,6 +1,7 @@
 package libraryapp.service.games.game;
 
 import libraryapp.comparators.ComparatorSorting;
+import libraryapp.configuration.RawConfiguration;
 import libraryapp.entities.games.DeveloperEntity;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.entities.user.UserEntity;
@@ -27,19 +28,22 @@ public class GameServicesImpl implements GameServices<GameModel> {
     private final PublisherRepository publisherRepository;
     private final ComparatorSorting comparatorSorting;
     private final GameTransformerImpl gameTransformer;
+    private final RawConfiguration rawConfiguration;
 
 
     public GameServicesImpl(GameRepository gameRepository,
                             ComparatorSorting comparatorSorting,
                             UserRepository userRepository,
                             DeveloperRepository developerRepository,
-                            PublisherRepository publisherRepository) {
+                            PublisherRepository publisherRepository,
+                            RawConfiguration rawConfiguration) {
         this.gameRepository = gameRepository;
         this.comparatorSorting = comparatorSorting;
         this.userRepository = userRepository;
         this.developerRepository = developerRepository;
         this.gameTransformer = new GameTransformerImpl();
         this.publisherRepository = publisherRepository;
+        this.rawConfiguration = rawConfiguration;
     }
 
     @Override

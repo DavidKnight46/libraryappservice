@@ -14,3 +14,7 @@ spring:
     password: developer
     driver-class-name: 'com.mysql.jdbc.Driver'
 
+libraryservice:
+  raw:
+    url: https://api.rawg.io/api/
+
