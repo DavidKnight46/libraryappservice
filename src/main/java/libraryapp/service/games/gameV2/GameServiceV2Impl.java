@@ -3,7 +3,7 @@ package libraryapp.service.games.gameV2;
 import libraryapp.api.ApiClient;
 import libraryapp.api.ApiClientRawImpl;
 import libraryapp.configuration.RawConfiguration;
-import libraryapp.models.GameModel;
+import libraryapp.models.modelsV2.GameModelV2;
 import libraryapp.repository.GameRepository;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +25,7 @@ public class GameServiceV2Impl implements GameServiceV2 {
     }
 
     @Override
-    public GameModel getGameDetails(String gameName, String apiKey) throws IOException {
-
-        apiClient.getGameDetails(gameName, apiKey);
-        return null;
+    public GameModelV2 getGameDetails(String gameName) throws IOException {
+        return apiClient.getGameDetails(gameName);
     }
 }

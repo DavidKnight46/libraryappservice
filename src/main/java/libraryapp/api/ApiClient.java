@@ -1,13 +1,12 @@
 package libraryapp.api;
 
-import org.apache.http.HttpResponse;
-import org.springframework.lang.NonNull;
+import libraryapp.models.modelsV2.GameModelV2;
 import org.springframework.lang.Nullable;
 
 import java.io.IOException;
 
 public interface ApiClient {
 
-    HttpResponse getGameDetails(@NonNull String apiKey, @Nullable String gameNme) throws IOException;
+    GameModelV2 getGameDetails(@Nullable String gameNme) throws IOException;
 }
 

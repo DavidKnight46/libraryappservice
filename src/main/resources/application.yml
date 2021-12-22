@@ -16,5 +16,5 @@ spring:
 
 libraryservice:
   raw:
-    url: https://api.rawg.io/api/
+    url: https://api.rawg.io/api
 
