@@ -5,8 +5,8 @@ import libraryapp.entities.user.UserEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "", schema = "")
-public class GameEntity {
+@Table(name = "game", schema = "libraryservicev2")
+public class GameEntityV2 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -15,11 +15,11 @@ public class GameEntity {
     @Column(name = "gamename")
     private String gameName;
 
-    @Column
+    @Column(name = "ispreordered")
     private boolean isPreOrdered;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "", referencedColumnName = "")
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
     public int getId() {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
-public interface GameController {
+public interface GameControllerV2 {
 
     @GetMapping(path = "/details/{gameName}")
     @ResponseStatus(HttpStatus.ACCEPTED)

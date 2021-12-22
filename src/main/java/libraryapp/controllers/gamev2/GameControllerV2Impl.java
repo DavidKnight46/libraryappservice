@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/game")
-public class GameControllerImpl implements GameController {
+@RequestMapping(value = "/gamev2")
+public class GameControllerV2Impl implements GameControllerV2 {
 
     @Override
     public void getGameDetails(String gameName) {
