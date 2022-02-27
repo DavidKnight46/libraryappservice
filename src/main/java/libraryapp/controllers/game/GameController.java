@@ -1,6 +1,7 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.GameModel;
+import libraryapp.models.request.GameModelRequest;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import org.springframework.ui.Model;
@@ -24,8 +25,5 @@ public interface GameController {
     List<GameModel> getAllGameByDeveloper(@PathVariable(value = "developerName") String developerName);
 
     @PostMapping(path = "/addGame")
-    void addGameToLibrary(@RequestBody GameModel gameModel,
-                          @RequestParam(name = "userId", required = false) int userId,
-                          @RequestParam(name = "developerId", required = false) int developerId,
-                          @RequestParam(name = "publisherId", required = false) int publisherId);
+    void addGameToLibrary(@RequestBody GameModelRequest gameModel);
 }

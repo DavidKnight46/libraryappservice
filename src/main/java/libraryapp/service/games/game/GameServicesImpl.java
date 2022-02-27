@@ -1,10 +1,9 @@
 package libraryapp.service.games.game;
 
 import libraryapp.comparators.ComparatorSorting;
-import libraryapp.entities.games.DeveloperEntity;
 import libraryapp.entities.games.GameEntity;
-import libraryapp.entities.user.UserEntity;
 import libraryapp.models.GameModel;
+import libraryapp.models.request.GameModelRequest;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
 import libraryapp.repository.PublisherRepository;
@@ -99,12 +98,12 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public void addGame(GameModel gameModel, int userId, int developerId, int publisherId) {
+    public void addGame(GameModelRequest gameModel) {
         GameEntity gameEntity = gameTransformer.getEntityFromGame(gameModel);
 
-        gameEntity.setUser(userRepository.findById(userId).get());
-        gameEntity.setDeveloper(developerRepository.findById(developerId).get());
-        gameEntity.setPublisher(publisherRepository.findById(publisherId).get());
+        gameEntity.setUser(userRepository.findById(gameModel.getUserId()).get());
+        gameEntity.setDeveloper(developerRepository.findById(gameModel.getDevId()).get());
+        gameEntity.setPublisher(publisherRepository.findById(gameModel.getPubId()).get());
 
         gameRepository.save(gameEntity);
     }

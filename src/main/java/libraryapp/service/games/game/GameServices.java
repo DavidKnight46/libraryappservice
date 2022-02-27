@@ -1,6 +1,7 @@
 package libraryapp.service.games.game;
 
 import libraryapp.models.GameModel;
+import libraryapp.models.request.GameModelRequest;
 import libraryapp.service.CollectionService;
 
 import java.util.List;
@@ -10,6 +11,6 @@ public interface GameServices<T> extends CollectionService<GameModel> {
 
     List<T> findGamesByPub_Name(String developerName);
 
-    void addGame(GameModel gameModel, int userId, int developerId, int publisherId);
+    void addGame(GameModelRequest gameModel);
 
 }

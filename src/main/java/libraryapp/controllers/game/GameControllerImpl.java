@@ -1,6 +1,7 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.GameModel;
+import libraryapp.models.request.GameModelRequest;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServices;
@@ -44,10 +45,7 @@ public class GameControllerImpl implements GameController {
     }
 
     @Override
-    public void addGameToLibrary(GameModel gameModel,
-                                 @RequestParam(name = "userId", required = false) int userId,
-                                 @RequestParam(name = "developerId", required = false) int developerId,
-                                 @RequestParam(name = "publisherId", required = false) int publisherId) {
-        service.addGame(gameModel, userId, developerId, publisherId);
+    public void addGameToLibrary(GameModelRequest gameModelRequest) {
+        service.addGame(gameModelRequest);
     }
 }
