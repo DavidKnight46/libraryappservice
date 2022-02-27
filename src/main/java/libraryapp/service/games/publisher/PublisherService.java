@@ -1,10 +1,10 @@
 package libraryapp.service.games.publisher;
 
-import libraryapp.models.PublisherModel;
+import libraryapp.models.response.PublisherResponse;
 
 public interface PublisherService {
 
-    void addPublisher(PublisherModel publisher);
+    void addPublisher(PublisherResponse publisher);
 
     void deletePublisher(String publisherId);
 }

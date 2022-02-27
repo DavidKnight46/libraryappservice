@@ -1,8 +1,8 @@
 package libraryapp.controllers.user;
 
-import libraryapp.models.UserModel;
+import libraryapp.models.request.UserRequest;
+import libraryapp.models.response.UserModel;
 import libraryapp.service.user.UserService;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,7 +22,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public void addUser(UserModel user) {
+    public void addUser(UserRequest user) {
         userService.addUser(user);
     }
 

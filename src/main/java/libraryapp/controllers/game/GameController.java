@@ -1,6 +1,6 @@
 package libraryapp.controllers.game;
 
-import libraryapp.models.GameModel;
+import libraryapp.models.response.GameResponse;
 import libraryapp.models.request.GameModelRequest;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 
 public interface GameController {
@@ -17,12 +16,12 @@ public interface GameController {
     String getGame(Model model, @RequestParam int id);
 
     @GetMapping(path = "/getAllGames")
-    List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
-                                @RequestParam(name = "order", required = false) Order order,
-                                @RequestParam(name = "userId", required = false) int userId);
+    List<GameResponse> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
+                                   @RequestParam(name = "order", required = false) Order order,
+                                   @RequestParam(name = "userId", required = false) int userId);
 
     @GetMapping(path = "/getAllGames/{developerName}")
-    List<GameModel> getAllGameByDeveloper(@PathVariable(value = "developerName") String developerName);
+    List<GameResponse> getAllGameByDeveloper(@PathVariable(value = "developerName") String developerName);
 
     @PostMapping(path = "/addGame")
     void addGameToLibrary(@RequestBody GameModelRequest gameModel);

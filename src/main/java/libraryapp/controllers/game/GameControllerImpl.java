@@ -1,6 +1,6 @@
 package libraryapp.controllers.game;
 
-import libraryapp.models.GameModel;
+import libraryapp.models.response.GameResponse;
 import libraryapp.models.request.GameModelRequest;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
@@ -33,14 +33,14 @@ public class GameControllerImpl implements GameController {
     }
 
     @Override
-    public List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false, defaultValue = "NAME") SortBy sortBy,
-                                       @RequestParam(name = "order", required = false, defaultValue = "ASC") Order order,
-                                       @RequestParam(name = "userId") int userId) {
+    public List<GameResponse> getAllGames(@RequestParam(name = "sortBy", required = false, defaultValue = "NAME") SortBy sortBy,
+                                          @RequestParam(name = "order", required = false, defaultValue = "ASC") Order order,
+                                          @RequestParam(name = "userId") int userId) {
         return service.getCollection(sortBy, order, userId);
     }
 
     @Override
-    public List<GameModel> getAllGameByDeveloper(String developerName) {
+    public List<GameResponse> getAllGameByDeveloper(String developerName) {
         return service.findGamesByDev_Name(developerName);
     }
 

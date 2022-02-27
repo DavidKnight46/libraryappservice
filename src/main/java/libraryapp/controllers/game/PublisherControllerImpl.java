@@ -1,6 +1,6 @@
 package libraryapp.controllers.game;
 
-import libraryapp.models.PublisherModel;
+import libraryapp.models.response.PublisherResponse;
 import libraryapp.service.games.publisher.PublisherService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,7 +16,7 @@ public class PublisherControllerImpl implements PublisherController{
     }
 
     @Override
-    public void addPublisher(PublisherModel publisher) {
+    public void addPublisher(PublisherResponse publisher) {
         publisherService.addPublisher(publisher);
     }
 

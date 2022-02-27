@@ -1,6 +1,8 @@
 package libraryapp.service.user;
 
-import libraryapp.models.UserModel;
+import libraryapp.entities.user.UserEntity;
+import libraryapp.models.request.UserRequest;
+import libraryapp.models.response.UserModel;
 import libraryapp.repository.UserRepository;
 import libraryapp.transformer.UserTransformerImpl;
 import org.springframework.stereotype.Service;
@@ -22,7 +24,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUser(UserModel user) {
+    public void addUser(UserRequest user) {
+        UserEntity userEntity = userTransformer.toUserEntity(user);
+
         userRepository.save(userTransformer.toUserEntity(user));
     }
 

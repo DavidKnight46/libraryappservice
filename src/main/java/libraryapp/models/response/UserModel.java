@@ -1,4 +1,4 @@
-package libraryapp.models;
+package libraryapp.models.response;
 
 public class UserModel {
 

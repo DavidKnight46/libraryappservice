@@ -2,7 +2,7 @@ package libraryapp.service.games.game;
 
 import libraryapp.comparators.ComparatorSorting;
 import libraryapp.entities.games.GameEntity;
-import libraryapp.models.GameModel;
+import libraryapp.models.response.GameResponse;
 import libraryapp.models.request.GameModelRequest;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
@@ -18,7 +18,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class GameServicesImpl implements GameServices<GameModel> {
+public class GameServicesImpl implements GameServices<GameResponse> {
 
     private final GameRepository gameRepository;
     private final UserRepository userRepository;
@@ -42,7 +42,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public List<GameModel> getCollection(SortBy sortBy, Order order, int userId) {
+    public List<GameResponse> getCollection(SortBy sortBy, Order order, int userId) {
 
         switch (sortBy) {
             case NAME:
@@ -71,12 +71,12 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public GameModel getItem(int id) {
+    public GameResponse getItem(int id) {
         return gameTransformer.getGameFromEntity(gameRepository.findById(id).orElseThrow());
     }
 
     @Override
-    public List<GameModel> findGamesByDev_Name(String developerName) {
+    public List<GameResponse> findGamesByDev_Name(String developerName) {
         Optional<List<GameEntity>> byDeveloper = gameRepository.findByDeveloper_Name(developerName);
 
         return byDeveloper
@@ -87,7 +87,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public List<GameModel> findGamesByPub_Name(String publisherName) {
+    public List<GameResponse> findGamesByPub_Name(String publisherName) {
         Optional<List<GameEntity>> byPublisher_name = gameRepository.findByPublisher_Name(publisherName);
 
         return byPublisher_name

@@ -16,13 +16,13 @@ public class GameEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
-    @Column
+    @Column(name = "game_name")
     private String gameName;
 
     @Column
     private int rating;
 
-    @Column
+    @Column(name = "release_date")
     private LocalDate releaseDate;
 
     @ManyToOne

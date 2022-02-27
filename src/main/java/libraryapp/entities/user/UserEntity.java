@@ -13,7 +13,7 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "userName")
     private String userName;
 
     @Column(name = "userPassword")

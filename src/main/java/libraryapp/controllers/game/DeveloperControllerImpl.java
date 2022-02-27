@@ -1,6 +1,6 @@
 package libraryapp.controllers.game;
 
-import libraryapp.models.DeveloperModel;
+import libraryapp.models.response.DeveloperResponse;
 import libraryapp.service.games.developer.DeveloperService;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,19 +21,19 @@ public class DeveloperControllerImpl implements DeveloperController {
     }
 
     @Override
-    public List<DeveloperModel> getDeveloper() {
+    public List<DeveloperResponse> getDeveloper() {
         return developerService.getDeveloper();
     }
 
     @Override
     @Transactional
-    public void addDeveloper(@RequestBody DeveloperModel developerModel) {
-        developerService.addDeveloper(developerModel);
+    public void addDeveloper(@RequestBody DeveloperResponse developerResponse) {
+        developerService.addDeveloper(developerResponse);
     }
 
     @Override
-    public void update(String developerId, @RequestBody DeveloperModel developerModel) {
-        developerService.update(developerId, developerModel);
+    public void update(String developerId, @RequestBody DeveloperResponse developerResponse) {
+        developerService.update(developerId, developerResponse);
     }
 
     @Override
