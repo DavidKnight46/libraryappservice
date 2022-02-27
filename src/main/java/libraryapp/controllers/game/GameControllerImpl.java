@@ -32,9 +32,9 @@ public class GameControllerImpl implements GameController {
     }
 
     @Override
-    public List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false) SortBy sortBy,
-                                       @RequestParam(name = "order", required = false) Order order,
-                                       @RequestParam(name = "userId", required = false) int userId) {
+    public List<GameModel> getAllGames(@RequestParam(name = "sortBy", required = false, defaultValue = "NAME") SortBy sortBy,
+                                       @RequestParam(name = "order", required = false, defaultValue = "ASC") Order order,
+                                       @RequestParam(name = "userId") int userId) {
         return service.getCollection(sortBy, order, userId);
     }
 

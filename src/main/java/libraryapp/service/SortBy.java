@@ -15,4 +15,9 @@ public enum SortBy {
     public String getSortBy() {
         return sortBy;
     }
+
+    @Override
+    public String toString() {
+        return sortBy;
+    }
 }

@@ -16,7 +16,7 @@ public class UserEntity {
     @Column(name = "username")
     private String userName;
 
-    @Column
+    @Column(name = "userPassword")
     private String password;
 
     @OneToMany(mappedBy = "user")
