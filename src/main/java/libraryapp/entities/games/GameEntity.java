@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "game", schema = "libraryservice")
@@ -40,6 +39,7 @@ public class GameEntity {
     public String getGameName() {
         return gameName;
     }
+
 
     public int getRating() {
         return rating;

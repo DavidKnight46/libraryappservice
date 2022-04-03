@@ -2,7 +2,6 @@ package libraryapp.service.user;
 
 import libraryapp.entities.user.UserEntity;
 import libraryapp.models.request.UserRequest;
-import libraryapp.models.response.UserModel;
 import libraryapp.repository.UserRepository;
 import libraryapp.transformer.UserTransformerImpl;
 import org.springframework.stereotype.Service;

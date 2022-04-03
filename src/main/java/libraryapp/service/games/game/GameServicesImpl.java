@@ -2,8 +2,9 @@ package libraryapp.service.games.game;
 
 import libraryapp.comparators.ComparatorSorting;
 import libraryapp.entities.games.GameEntity;
-import libraryapp.models.response.GameResponse;
+import libraryapp.entities.games.PublisherEntity;
 import libraryapp.models.request.GameModelRequest;
+import libraryapp.models.response.GameResponse;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
 import libraryapp.repository.PublisherRepository;
@@ -67,7 +68,8 @@ public class GameServicesImpl implements GameServices<GameResponse> {
                 break;
         }
 
-        return comparatorSorting.getListOfGames();
+        List<GameResponse> listOfGames = comparatorSorting.getListOfGames();
+        return listOfGames;
     }
 
     @Override
@@ -103,7 +105,15 @@ public class GameServicesImpl implements GameServices<GameResponse> {
 
         gameEntity.setUser(userRepository.findById(gameModel.getUserId()).get());
         gameEntity.setDeveloper(developerRepository.findById(gameModel.getDevId()).get());
-        gameEntity.setPublisher(publisherRepository.findById(gameModel.getPubId()).get());
+
+        List<PublisherEntity> all = publisherRepository.findAll();
+
+        Optional<PublisherEntity> byId = publisherRepository.findById(gameModel.getPubId());
+        PublisherEntity publisherEntity = byId.get();
+
+        PublisherEntity publisher = publisherEntity;
+
+        gameEntity.setPublisher(publisher);
 
         gameRepository.save(gameEntity);
     }

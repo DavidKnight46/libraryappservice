@@ -1,7 +1,6 @@
 package libraryapp.controllers.user;
 
 import libraryapp.models.request.UserRequest;
-import libraryapp.models.response.UserModel;
 import libraryapp.service.user.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

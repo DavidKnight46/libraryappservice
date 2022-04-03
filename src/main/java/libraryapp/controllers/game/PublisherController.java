@@ -1,16 +1,25 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.response.PublisherResponse;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import libraryapp.service.games.publisher.PublisherService;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-public interface PublisherController {
+@RestController
+@RequestMapping(path = "/publisher")
+public class PublisherController {
 
-    @PostMapping(path = "/addPublisher")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    void addPublisher(@RequestBody PublisherResponse publisher);
+    private final PublisherService publisherService;
 
-    @DeleteMapping(path = "/deletePublisher/{publisherId}")
-    @ResponseStatus(HttpStatus.OK)
-    void deletePublisher(@PathVariable(value = "publisherId") String publisherId);
+    public PublisherController(PublisherService publisherService) {
+        this.publisherService = publisherService;
+    }
+
+    public void addPublisher(PublisherResponse publisher) {
+        publisherService.addPublisher(publisher);
+    }
+
+    public void deletePublisher(String publisherId) {
+        publisherService.deletePublisher(publisherId);
+    }
 }

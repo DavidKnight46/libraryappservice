@@ -2,8 +2,8 @@ package libraryapp.transformer;
 
 
 import libraryapp.entities.games.GameEntity;
-import libraryapp.models.response.GameResponse;
 import libraryapp.models.request.GameModelRequest;
+import libraryapp.models.response.GameResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;

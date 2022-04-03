@@ -1,7 +1,6 @@
 package libraryapp.controllers.user;
 
 import libraryapp.models.request.UserRequest;
-import libraryapp.models.response.UserModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
