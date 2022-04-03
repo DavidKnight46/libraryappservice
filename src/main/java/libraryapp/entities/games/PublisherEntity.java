@@ -16,8 +16,8 @@ public class PublisherEntity {
     @Column(name = "pub_name")
     private String name;
 
-    @OneToOne(mappedBy = "publisher", fetch = FetchType.LAZY)
-    private GameEntity gameEntity;
+//    @OneToOne(mappedBy = "publisher", fetch = FetchType.LAZY)
+//    private GameEntity gameEntity;
 
     public String getName() {
         return name;

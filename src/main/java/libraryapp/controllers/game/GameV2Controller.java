@@ -22,9 +22,8 @@ public class GameV2Controller {
 
     @GetMapping(path = "/getAllGames/{id}")
     public List<GameResponse> getAllGames(@PathVariable(value = "id") String id){
-
         return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
-        //return null;
+
     }
 
     @PostMapping(path = "/addNewGame")

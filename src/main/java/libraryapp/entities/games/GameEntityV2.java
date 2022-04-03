@@ -31,11 +31,11 @@ public class GameEntityV2 {
     @Column(name = "pre_ordered")
     private Boolean isPreOrdered;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "developer_id", referencedColumnName = "id")
     private DeveloperEntity developer;
 

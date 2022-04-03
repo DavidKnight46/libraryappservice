@@ -1,6 +1,7 @@
 package libraryapp.service.games.game;
 
 import libraryapp.comparators.game.ComparatorSorting;
+import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.entities.games.PublisherEntity;
 import libraryapp.models.request.GameModelRequest;
@@ -43,7 +44,7 @@ public class GameServicesImpl implements GameServices<GameResponse> {
     }
 
     @Override
-    public List<GameResponse> getCollection(SortBy sortBy, Order order, int userId) {
+    public List<GameEntityV2Dto> getCollection(SortBy sortBy, Order order, int userId) {
 
         switch (sortBy) {
             case NAME:
@@ -69,7 +70,7 @@ public class GameServicesImpl implements GameServices<GameResponse> {
         }
 
         List<GameResponse> listOfGames = comparatorSorting.getListOfGames();
-        return listOfGames;
+        return null;
     }
 
     @Override

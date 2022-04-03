@@ -2,24 +2,22 @@ package libraryapp.dto;
 
 import libraryapp.models.response.DeveloperResponse;
 import libraryapp.models.response.PublisherResponse;
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
 //@Data
 public class GameEntityV2Dto implements Serializable {
-    private final Integer id;
-    private final String gameName;
-    private final String gameGenre;
-    private final Float gameRating;
-    private final String imageUrl;
-    private final LocalDate releaseDate;
-    private final Boolean isPreOrdered;
-    private final UserEntityDto user;
-    private final DeveloperResponse developer;
-    private final PublisherResponse publisher;
+    private Integer id;
+    private String gameName;
+    private String gameGenre;
+    private Float gameRating;
+    private String imageUrl;
+    private LocalDate releaseDate;
+    private Boolean isPreOrdered;
+    private UserEntityDto user;
+    private DeveloperResponse developer;
+    private PublisherResponse publisher;
 
     public GameEntityV2Dto(Integer id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, UserEntityDto user, DeveloperResponse developer, PublisherResponse publisher) {
         this.id = id;
@@ -72,5 +70,45 @@ public class GameEntityV2Dto implements Serializable {
 
     public PublisherResponse getPublisher() {
         return publisher;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public void setGameGenre(String gameGenre) {
+        this.gameGenre = gameGenre;
+    }
+
+    public void setGameRating(Float gameRating) {
+        this.gameRating = gameRating;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setPreOrdered(Boolean preOrdered) {
+        isPreOrdered = preOrdered;
+    }
+
+    public void setUser(UserEntityDto user) {
+        this.user = user;
+    }
+
+    public void setDeveloper(DeveloperResponse developer) {
+        this.developer = developer;
+    }
+
+    public void setPublisher(PublisherResponse publisher) {
+        this.publisher = publisher;
     }
 }

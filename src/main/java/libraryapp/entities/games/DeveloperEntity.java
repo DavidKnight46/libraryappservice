@@ -13,8 +13,8 @@ public class DeveloperEntity {
     @Column(name = "dev_name")
     private String name;
 
-    @OneToOne(mappedBy = "developer", fetch = FetchType.LAZY)
-    private GameEntity gameEntity;
+//    @OneToOne(mappedBy = "developer", fetch = FetchType.LAZY)
+//    private GameEntity gameEntity;
 
     public String getName() {
         return name;
@@ -32,11 +32,11 @@ public class DeveloperEntity {
         this.id = id;
     }
 
-    public GameEntity getGameEntity() {
-        return gameEntity;
-    }
-
-    public void setGameEntity(GameEntity gameEntity) {
-        this.gameEntity = gameEntity;
-    }
+//    public GameEntity getGameEntity() {
+//        return gameEntity;
+//    }
+//
+//    public void setGameEntity(GameEntity gameEntity) {
+//        this.gameEntity = gameEntity;
+//    }
 }

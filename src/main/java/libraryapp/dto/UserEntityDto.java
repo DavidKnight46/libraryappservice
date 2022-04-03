@@ -1,9 +1,5 @@
 package libraryapp.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Value;
-
 import java.io.Serializable;
 
 //@AllArgsConstructor

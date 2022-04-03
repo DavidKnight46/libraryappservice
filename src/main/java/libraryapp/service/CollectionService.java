@@ -1,9 +1,11 @@
 package libraryapp.service;
 
+import libraryapp.dto.GameEntityV2Dto;
+
 import java.util.List;
 
 public interface CollectionService<T> {
-    List<T> getCollection(SortBy sortBy, Order order, int userId);
+    List<GameEntityV2Dto> getCollection(SortBy sortBy, Order order, int userId);
 
     T getItem(int id);
 }

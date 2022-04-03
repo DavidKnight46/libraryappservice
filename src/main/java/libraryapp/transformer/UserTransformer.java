@@ -1,5 +1,6 @@
 package libraryapp.transformer;
 
+import libraryapp.dto.UserEntityDto;
 import libraryapp.entities.user.UserEntity;
 import libraryapp.models.request.UserRequest;
 import libraryapp.models.response.UserModel;
@@ -15,4 +16,6 @@ public interface UserTransformer {
     UserModel fromUserEntity(UserEntity userEntity);
 
     UserEntity toUserEntity(UserRequest userModel);
+
+    UserEntityDto toUserDto(UserEntity userEntity);
 }
