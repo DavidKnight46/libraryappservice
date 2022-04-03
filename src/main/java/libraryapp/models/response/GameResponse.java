@@ -1,34 +1,36 @@
-package libraryapp.models;
+package libraryapp.models.response;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @NoArgsConstructor
-public class GameModel {
+@AllArgsConstructor
+public class GameResponse {
     private String gameName;
 
     private int rating;
 
     private LocalDate releaseDate;
 
-    private DeveloperModel developer;
+    private DeveloperResponse developer;
 
-    private PublisherModel publisher;
+    private PublisherResponse publisher;
 
-    public DeveloperModel getDeveloper() {
+    public DeveloperResponse getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(DeveloperModel developer) {
+    public void setDeveloper(DeveloperResponse developer) {
         this.developer = developer;
     }
 
-    public PublisherModel getPublisher() {
+    public PublisherResponse getPublisher() {
         return publisher;
     }
 
-    public void setPublisher(PublisherModel publisher) {
+    public void setPublisher(PublisherResponse publisher) {
         this.publisher = publisher;
     }
 

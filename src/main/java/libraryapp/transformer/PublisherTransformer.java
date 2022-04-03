@@ -1,7 +1,7 @@
 package libraryapp.transformer;
 
 import libraryapp.entities.games.PublisherEntity;
-import libraryapp.models.PublisherModel;
+import libraryapp.models.response.PublisherResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -9,8 +9,8 @@ import org.mapstruct.Mappings;
 @Mapper
 public interface PublisherTransformer {
 
-    @Mappings({@Mapping(source = "publisherModel.name", target= "name")})
-    PublisherEntity toPublisherEntity(PublisherModel publisherModel);
+    @Mappings({@Mapping(source = "publisherResponse.name", target= "name")})
+    PublisherEntity toPublisherEntity(PublisherResponse publisherResponse);
 
-    PublisherModel fromPublisherEntity(PublisherEntity publisherEntity);
+    PublisherResponse fromPublisherEntity(PublisherEntity publisherEntity);
 }

@@ -1,6 +1,6 @@
 package libraryapp.service.games.publisher;
 
-import libraryapp.models.PublisherModel;
+import libraryapp.models.response.PublisherResponse;
 import libraryapp.repository.PublisherRepository;
 import libraryapp.transformer.PublisherTransformer;
 import libraryapp.transformer.PublisherTransformerImpl;
@@ -18,7 +18,7 @@ public class PublisherServiceImpl implements PublisherService {
     }
 
     @Override
-    public void addPublisher(PublisherModel publisher) {
+    public void addPublisher(PublisherResponse publisher) {
         publisherRepository.save(publisherTransformer.toPublisherEntity(publisher));
     }
 

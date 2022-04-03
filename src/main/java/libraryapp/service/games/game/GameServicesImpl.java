@@ -1,10 +1,10 @@
 package libraryapp.service.games.game;
 
-import libraryapp.comparators.ComparatorSorting;
-import libraryapp.entities.games.DeveloperEntity;
+import libraryapp.comparators.game.ComparatorSorting;
 import libraryapp.entities.games.GameEntity;
-import libraryapp.entities.user.UserEntity;
-import libraryapp.models.GameModel;
+import libraryapp.entities.games.PublisherEntity;
+import libraryapp.models.request.GameModelRequest;
+import libraryapp.models.response.GameResponse;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
 import libraryapp.repository.PublisherRepository;
@@ -19,7 +19,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class GameServicesImpl implements GameServices<GameModel> {
+public class GameServicesImpl implements GameServices<GameResponse> {
 
     private final GameRepository gameRepository;
     private final UserRepository userRepository;
@@ -43,7 +43,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public List<GameModel> getCollection(SortBy sortBy, Order order, int userId) {
+    public List<GameResponse> getCollection(SortBy sortBy, Order order, int userId) {
 
         switch (sortBy) {
             case NAME:
@@ -68,16 +68,17 @@ public class GameServicesImpl implements GameServices<GameModel> {
                 break;
         }
 
-        return comparatorSorting.getListOfGames();
+        List<GameResponse> listOfGames = comparatorSorting.getListOfGames();
+        return listOfGames;
     }
 
     @Override
-    public GameModel getItem(int id) {
+    public GameResponse getItem(int id) {
         return gameTransformer.getGameFromEntity(gameRepository.findById(id).orElseThrow());
     }
 
     @Override
-    public List<GameModel> findGamesByDev_Name(String developerName) {
+    public List<GameResponse> findGamesByDev_Name(String developerName) {
         Optional<List<GameEntity>> byDeveloper = gameRepository.findByDeveloper_Name(developerName);
 
         return byDeveloper
@@ -88,7 +89,7 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public List<GameModel> findGamesByPub_Name(String publisherName) {
+    public List<GameResponse> findGamesByPub_Name(String publisherName) {
         Optional<List<GameEntity>> byPublisher_name = gameRepository.findByPublisher_Name(publisherName);
 
         return byPublisher_name
@@ -99,12 +100,20 @@ public class GameServicesImpl implements GameServices<GameModel> {
     }
 
     @Override
-    public void addGame(GameModel gameModel, int userId, int developerId, int publisherId) {
+    public void addGame(GameModelRequest gameModel) {
         GameEntity gameEntity = gameTransformer.getEntityFromGame(gameModel);
 
-        gameEntity.setUser(userRepository.findById(userId).get());
-        gameEntity.setDeveloper(developerRepository.findById(developerId).get());
-        gameEntity.setPublisher(publisherRepository.findById(publisherId).get());
+        gameEntity.setUser(userRepository.findById(gameModel.getUserId()).get());
+        gameEntity.setDeveloper(developerRepository.findById(gameModel.getDevId()).get());
+
+        List<PublisherEntity> all = publisherRepository.findAll();
+
+        Optional<PublisherEntity> byId = publisherRepository.findById(gameModel.getPubId());
+        PublisherEntity publisherEntity = byId.get();
+
+        PublisherEntity publisher = publisherEntity;
+
+        gameEntity.setPublisher(publisher);
 
         gameRepository.save(gameEntity);
     }

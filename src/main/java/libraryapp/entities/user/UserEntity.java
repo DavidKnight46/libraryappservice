@@ -13,10 +13,10 @@ public class UserEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "username")
+    @Column(name = "userName")
     private String userName;
 
-    @Column
+    @Column(name = "userPassword")
     private String password;
 
     @OneToMany(mappedBy = "user")

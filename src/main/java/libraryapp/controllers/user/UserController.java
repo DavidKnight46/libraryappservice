@@ -1,6 +1,6 @@
 package libraryapp.controllers.user;
 
-import libraryapp.models.UserModel;
+import libraryapp.models.request.UserRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +13,7 @@ public interface UserController {
 
     @PostMapping(path = "/addUser")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    void addUser(@RequestBody UserModel user);
+    void addUser(@RequestBody UserRequest user);
 
     @DeleteMapping(path = "/deleteUser/{userId}")
     @ResponseStatus(HttpStatus.OK)

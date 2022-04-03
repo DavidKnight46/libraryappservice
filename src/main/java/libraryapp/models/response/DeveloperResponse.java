@@ -1,14 +1,14 @@
-package libraryapp.models;
+package libraryapp.models.response;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 
-@JsonDeserialize(builder = PublisherModel.PublisherModelBuilder.class)
-public class PublisherModel {
+@JsonDeserialize(builder = DeveloperResponse.DeveloperModelBuilder.class)
+public class DeveloperResponse {
 
-    private final String name;
+    private String name;
 
-    public PublisherModel(String name) {
+    public DeveloperResponse(String name) {
         this.name = name;
     }
 
@@ -17,12 +17,11 @@ public class PublisherModel {
     }
 
     @JsonPOJOBuilder(withPrefix = "")
-    public static class PublisherModelBuilder {
-
+    public static class DeveloperModelBuilder {
         private String name;
 
-        public PublisherModel build(){
-            return new PublisherModel(name);
+        public DeveloperResponse build() {
+            return new DeveloperResponse(name);
         }
 
         public String getName() {
@@ -33,4 +32,5 @@ public class PublisherModel {
             this.name = name;
         }
     }
+
 }

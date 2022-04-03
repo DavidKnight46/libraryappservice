@@ -10,7 +10,7 @@ public class DeveloperEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
+    @Column(name = "dev_name")
     private String name;
 
     @OneToOne(mappedBy = "developer", fetch = FetchType.LAZY)

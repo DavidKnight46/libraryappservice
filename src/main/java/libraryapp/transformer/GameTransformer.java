@@ -1,7 +1,9 @@
 package libraryapp.transformer;
 
+
 import libraryapp.entities.games.GameEntity;
-import libraryapp.models.GameModel;
+import libraryapp.models.request.GameModelRequest;
+import libraryapp.models.response.GameResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -12,10 +14,7 @@ public interface GameTransformer {
     @Mappings({@Mapping(target="gameName", source="gameEntity.gameName"),
                @Mapping(target="rating", source="gameEntity.rating"),
                @Mapping(target="releaseDate", source="gameEntity.releaseDate")})
-    GameModel getGameFromEntity(GameEntity gameEntity);
+    GameResponse getGameFromEntity(GameEntity gameEntity);
 
-//    @Mappings({@Mapping(source = "gameName", target = "gameName"),
-//               @Mapping(source = "rating", target = "rating"),
-//               @Mapping(source = "releaseDate", target = "releaseDate")})
-    GameEntity getEntityFromGame(GameModel gameModel);
+    GameEntity getEntityFromGame(GameModelRequest gameModel);
 }

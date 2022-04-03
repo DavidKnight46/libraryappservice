@@ -14,4 +14,9 @@ public enum Order {
     public String getOrder() {
         return order;
     }
+
+    @Override
+    public String toString() {
+        return order;
+    }
 }

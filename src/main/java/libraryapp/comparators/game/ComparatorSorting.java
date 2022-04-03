@@ -1,11 +1,8 @@
-package libraryapp.comparators;
+package libraryapp.comparators.game;
 
-import libraryapp.comparators.game.GameNameComparator;
-import libraryapp.comparators.game.GameRatingComparator;
-import libraryapp.comparators.game.GameReleaseDateComparator;
 import libraryapp.entities.games.GameEntity;
-import libraryapp.models.GameModel;
-import libraryapp.models.PublisherModel;
+import libraryapp.models.response.GameResponse;
+import libraryapp.models.response.PublisherResponse;
 import libraryapp.repository.GameRepository;
 import libraryapp.transformer.DeveloperTransformerImpl;
 import libraryapp.transformer.GameTransformerImpl;
@@ -23,7 +20,7 @@ public class ComparatorSorting {
     private final GameTransformerImpl gameTransformer;
     private final DeveloperTransformerImpl developerTransformer;
 
-    private List<GameModel> listOfGames;
+    private List<GameResponse> listOfGames;
 
     public ComparatorSorting(GameRepository gameRepository) {
         this.gameRepository = gameRepository;
@@ -31,17 +28,17 @@ public class ComparatorSorting {
         this.developerTransformer = new DeveloperTransformerImpl();
     }
 
-    public List<GameModel> getListOfGames() {
+    public List<GameResponse> getListOfGames() {
         return listOfGames;
     }
 
-    public GameModel mapToGame(GameEntity gameEntity) {
-        GameModel gameModel = gameTransformer.getGameFromEntity(gameEntity);
+    public GameResponse mapToGame(GameEntity gameEntity) {
+        GameResponse gameResponse = gameTransformer.getGameFromEntity(gameEntity);
 
-        gameModel.setDeveloper(developerTransformer.toDeveloperModel(gameEntity.getDeveloper()));
-        gameModel.setPublisher(new PublisherModel(gameEntity.getPublisher().getName()));
+        gameResponse.setDeveloper(developerTransformer.toDeveloperModel(gameEntity.getDeveloper()));
+        gameResponse.setPublisher(new PublisherResponse(gameEntity.getPublisher().getName()));
 
-        return gameModel;
+        return gameResponse;
     }
 
     public void orderByDesc() {

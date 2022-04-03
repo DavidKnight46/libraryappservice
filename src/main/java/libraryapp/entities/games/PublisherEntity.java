@@ -13,7 +13,7 @@ public class PublisherEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
+    @Column(name = "pub_name")
     private String name;
 
     @OneToOne(mappedBy = "publisher", fetch = FetchType.LAZY)

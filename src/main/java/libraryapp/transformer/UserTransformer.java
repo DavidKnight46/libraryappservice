@@ -1,7 +1,8 @@
 package libraryapp.transformer;
 
 import libraryapp.entities.user.UserEntity;
-import libraryapp.models.UserModel;
+import libraryapp.models.request.UserRequest;
+import libraryapp.models.response.UserModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -13,5 +14,5 @@ public interface UserTransformer {
                @Mapping(source = "userEntity.password", target = "password")})
     UserModel fromUserEntity(UserEntity userEntity);
 
-    UserEntity toUserEntity(UserModel userModel);
+    UserEntity toUserEntity(UserRequest userModel);
 }

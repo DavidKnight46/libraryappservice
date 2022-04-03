@@ -1,28 +1,39 @@
 package libraryapp.controllers.game;
 
-import libraryapp.models.DeveloperModel;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import libraryapp.models.response.DeveloperResponse;
+import libraryapp.service.games.developer.DeveloperService;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-public interface DeveloperController {
+@RestController
+@RequestMapping("/developer")
+public class DeveloperController {
 
-    @GetMapping(path = "/getDevelopers")
-    @ResponseStatus(HttpStatus.OK)
-    List<DeveloperModel> getDeveloper();
 
-    @PostMapping(path = "/addDeveloper",
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    void addDeveloper(DeveloperModel developerModel);
+    private final DeveloperService developerService;
 
-    @PutMapping(path = "/editDeveloper/{developerId}")
-    @ResponseStatus(HttpStatus.ACCEPTED)
-    void update(@PathVariable(name = "developerId") String developerId, @RequestBody DeveloperModel developerModel);
+    public DeveloperController(DeveloperService developerService) {
+        this.developerService = developerService;
+    }
 
-    @DeleteMapping(path = "/deleteDeveloper/{developerId}")
-    @ResponseStatus(HttpStatus.OK)
-    void removeDeveloper(@PathVariable(name = "developerId") String developerId);
+    public List<DeveloperResponse> getDeveloper() {
+        return developerService.getDeveloper();
+    }
+
+    @Transactional
+    public void addDeveloper(@RequestBody DeveloperResponse developerResponse) {
+        developerService.addDeveloper(developerResponse);
+    }
+
+    public void update(String developerId, @RequestBody DeveloperResponse developerResponse) {
+        developerService.update(developerId, developerResponse);
+    }
+
+    public void removeDeveloper(String developerId) {
+        developerService.removeDeveloper(developerId);
+    }
 }
