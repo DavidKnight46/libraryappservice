@@ -1,14 +1,10 @@
 package libraryapp.entities.games;
 
 import libraryapp.entities.user.UserEntity;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Getter
-@Setter
 @Table(name = "gameentity")
 @Entity
 public class GameEntityV2 {
@@ -17,19 +13,22 @@ public class GameEntityV2 {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @Column(name = "")
+    @Column(name = "game_name")
     private String gameName;
 
-    @Column(name = "")
+    @Column(name = "game_genre")
     private String gameGenre;
 
-    @Column(name = "")
+    @Column(name = "game_rating")
+    private Float gameRating;
+
+    @Column(name = "image_url")
     private String imageUrl;
 
-    @Column(name = "")
+    @Column(name = "release_date")
     private LocalDate releaseDate;
 
-    @Column(name = "")
+    @Column(name = "pre_ordered")
     private Boolean isPreOrdered;
 
     @ManyToOne
@@ -44,11 +43,83 @@ public class GameEntityV2 {
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     private PublisherEntity publisher;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getGameName() {
+        return gameName;
+    }
+
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
+    }
+
+    public String getGameGenre() {
+        return gameGenre;
+    }
+
+    public void setGameGenre(String gameGenre) {
+        this.gameGenre = gameGenre;
+    }
+
+    public Float getGameRating() {
+        return gameRating;
+    }
+
+    public void setGameRating(Float gameRating) {
+        this.gameRating = gameRating;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public LocalDate getReleaseDate() {
+        return releaseDate;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public Boolean getPreOrdered() {
+        return isPreOrdered;
+    }
+
+    public void setPreOrdered(Boolean preOrdered) {
+        isPreOrdered = preOrdered;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
     public DeveloperEntity getDeveloper() {
         return developer;
     }
 
     public void setDeveloper(DeveloperEntity developer) {
         this.developer = developer;
+    }
+
+    public PublisherEntity getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(PublisherEntity publisher) {
+        this.publisher = publisher;
     }
 }

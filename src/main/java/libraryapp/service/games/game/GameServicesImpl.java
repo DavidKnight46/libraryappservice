@@ -1,6 +1,6 @@
 package libraryapp.service.games.game;
 
-import libraryapp.comparators.ComparatorSorting;
+import libraryapp.comparators.game.ComparatorSorting;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.entities.games.PublisherEntity;
 import libraryapp.models.request.GameModelRequest;

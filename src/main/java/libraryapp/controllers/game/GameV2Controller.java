@@ -2,8 +2,10 @@ package libraryapp.controllers.game;
 
 import libraryapp.models.request.GameModelRequest;
 import libraryapp.models.response.GameResponse;
+import libraryapp.service.Order;
+import libraryapp.service.SortBy;
+import libraryapp.service.games.game.GameServiceImplV2;
 import libraryapp.service.games.game.GameServices;
-import libraryapp.service.games.game.GameServicesImpl;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,14 +16,15 @@ public class GameV2Controller {
 
     private final GameServices gameServices;
 
-    public GameV2Controller(GameServicesImpl gameServices) {
+    public GameV2Controller(GameServiceImplV2 gameServices) {
         this.gameServices = gameServices;
     }
 
-    @GetMapping(path = "/getAllGames")
-    public List<GameResponse> getAllGames(){
+    @GetMapping(path = "/getAllGames/{id}")
+    public List<GameResponse> getAllGames(@PathVariable(value = "id") String id){
 
-        return null;
+        return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
+        //return null;
     }
 
     @PostMapping(path = "/addNewGame")

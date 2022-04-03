@@ -1,10 +1,12 @@
 package libraryapp.models.response;
 
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @NoArgsConstructor
+@AllArgsConstructor
 public class GameResponse {
     private String gameName;
 

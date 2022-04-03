@@ -1,8 +1,5 @@
-package libraryapp.comparators;
+package libraryapp.comparators.game;
 
-import libraryapp.comparators.game.GameNameComparator;
-import libraryapp.comparators.game.GameRatingComparator;
-import libraryapp.comparators.game.GameReleaseDateComparator;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.models.response.GameResponse;
 import libraryapp.models.response.PublisherResponse;
