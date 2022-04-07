@@ -35,9 +35,6 @@ public class ComparatorSorting {
     public GameResponse mapToGame(GameEntity gameEntity) {
         GameResponse gameResponse = gameTransformer.getGameFromEntity(gameEntity);
 
-        gameResponse.setDeveloper(developerTransformer.toDeveloperModel(gameEntity.getDeveloper()));
-        gameResponse.setPublisher(new PublisherResponse(gameEntity.getPublisher().getName()));
-
         return gameResponse;
     }
 
