@@ -31,6 +31,9 @@ public class GameEntityV2 {
     @Column(name = "pre_ordered")
     private Boolean isPreOrdered;
 
+    @Column(name = "gameplatform")
+    private String platform;
+
 //    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "user_id", nullable = false)
 //    private UserEntity user;
@@ -97,5 +100,13 @@ public class GameEntityV2 {
 
     public void setPreOrdered(Boolean preOrdered) {
         isPreOrdered = preOrdered;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }

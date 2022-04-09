@@ -15,8 +15,9 @@ public class GameEntityV2Dto implements Serializable {
     private String imageUrl;
     private LocalDate releaseDate;
     private Boolean isPreOrdered;
+    private String platform;
 
-    public GameEntityV2Dto(Integer id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, UserEntityDto user, DeveloperResponse developer, PublisherResponse publisher) {
+    public GameEntityV2Dto(Integer id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, UserEntityDto user, DeveloperResponse developer, PublisherResponse publisher, String platform) {
         this.id = id;
         this.gameName = gameName;
         this.gameGenre = gameGenre;
@@ -24,6 +25,7 @@ public class GameEntityV2Dto implements Serializable {
         this.imageUrl = imageUrl;
         this.releaseDate = releaseDate;
         this.isPreOrdered = isPreOrdered;
+        this.platform = platform;
     }
 
     public Integer getId() {
@@ -80,5 +82,13 @@ public class GameEntityV2Dto implements Serializable {
 
     public void setPreOrdered(Boolean preOrdered) {
         isPreOrdered = preOrdered;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
     }
 }
