@@ -1,10 +1,13 @@
 package libraryapp.service.user;
 
+import libraryapp.dto.UserEntityDto;
 import libraryapp.entities.user.UserEntity;
 import libraryapp.models.request.UserRequest;
 import libraryapp.repository.UserRepository;
 import libraryapp.transformer.UserTransformerImpl;
 import org.springframework.stereotype.Service;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,8 +21,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public boolean checkUser(String userName, String password) {
-        return userRepository.findUserEntityByUserNameAndPassword(userName, password).isPresent();
+    public UserEntityDto checkUser(String userName, String password) {
+        AtomicReference<UserEntityDto> userEntityDto = new AtomicReference();
+
+        userRepository.findUserEntityByUserNameAndPassword(userName, password).ifPresentOrElse((value) -> {
+            UserEntity userEntity = userRepository.findUserEntityByUserNameAndPassword(userName, password).get();
+
+            userEntityDto.set(new UserEntityDto(userEntity.getId(), userEntity.getUserName(), userEntity.getPassword()));
+        }, () -> {
+            //TODO
+            throw new IllegalArgumentException();
+        });
+
+        return userEntityDto.get();
     }
 
     @Override

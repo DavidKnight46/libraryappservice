@@ -1,13 +1,16 @@
 package libraryapp.controllers.user;
 
+import libraryapp.dto.UserEntityDto;
 import libraryapp.models.request.UserRequest;
 import libraryapp.service.user.UserService;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/user")
-public class UserControllerImpl implements UserController {
+@RequestMapping(path = "/user")
+public class UserControllerImpl {
 
     private final UserService userService;
 
@@ -15,17 +18,16 @@ public class UserControllerImpl implements UserController {
         this.userService = userService;
     }
 
-    @Override
-    public boolean checkUser(String userName, String password) {
+    @GetMapping(path = "/getuser")
+    public UserEntityDto checkUser(@RequestParam(name = "username") String userName,
+                                   @RequestParam(name = "password") String password) {
         return userService.checkUser(userName, password);
     }
 
-    @Override
     public void addUser(UserRequest user) {
         userService.addUser(user);
     }
 
-    @Override
     public void deleteUser(String userId) {
         userService.deleteUser(userId);
     }
