@@ -1,5 +1,6 @@
 package libraryapp.service.games.game;
 
+import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.request.GameModelRequest;
 import libraryapp.models.response.GameResponse;
 import libraryapp.service.CollectionService;
@@ -11,6 +12,7 @@ public interface GameServices<T> extends CollectionService<GameResponse> {
 
     List<T> findGamesByPub_Name(String developerName);
 
-    void addGame(GameModelRequest gameModel);
+    void addGame(T gameModel);
 
+    void addGame(GameEntityV2Dto gameModel);
 }

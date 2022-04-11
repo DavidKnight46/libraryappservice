@@ -1,5 +1,6 @@
 package libraryapp.controllers.game;
 
+import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.request.GameModelRequest;
 import libraryapp.models.response.GameResponse;
 import libraryapp.service.Order;
@@ -29,7 +30,9 @@ public class GameV2Controller {
     }
 
     @PostMapping(path = "/addNewGame")
-    public void addGame(GameModelRequest gameModelRequest){}
+    public void addGame(GameEntityV2Dto gameModelRequest){
+        gameServices.addGame(gameModelRequest);
+    }
 
     @PutMapping(path = "/updateGame")
     public void updateGame(GameModelRequest gameModelRequest){}

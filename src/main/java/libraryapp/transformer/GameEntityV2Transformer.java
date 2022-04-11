@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface GameEntityV2Transformer {
 
     GameEntityV2Dto fromEntity(GameEntityV2 gameEntityV2Dto);
+
+    GameEntityV2 toEntity(GameEntityV2Dto gameEntityV2Dto);
 }

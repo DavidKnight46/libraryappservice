@@ -34,10 +34,10 @@ public class GameEntityV2 {
     @Column(name = "gameplatform")
     private String platform;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private UserEntity user;
-//
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private UserEntity user;
+
 //    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 //    @JoinColumn(name = "developer_id", referencedColumnName = "id")
 //    private DeveloperEntity developer;

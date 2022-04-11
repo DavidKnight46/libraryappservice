@@ -4,7 +4,6 @@ import libraryapp.comparators.game.ComparatorSorting;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntity;
 import libraryapp.entities.games.PublisherEntity;
-import libraryapp.models.request.GameModelRequest;
 import libraryapp.models.response.GameResponse;
 import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameRepository;
@@ -101,22 +100,27 @@ public class GameServicesImpl implements GameServices<GameResponse> {
     }
 
     @Override
-    public void addGame(GameModelRequest gameModel) {
-        GameEntity gameEntity = gameTransformer.getEntityFromGame(gameModel);
+    public void addGame(GameResponse gameModel) {
 
-        gameEntity.setUser(userRepository.findById(gameModel.getUserId()).get());
-        gameEntity.setDeveloper(developerRepository.findById(gameModel.getDevId()).get());
+    }
 
-        List<PublisherEntity> all = publisherRepository.findAll();
-
-        Optional<PublisherEntity> byId = publisherRepository.findById(gameModel.getPubId());
-        PublisherEntity publisherEntity = byId.get();
-
-        PublisherEntity publisher = publisherEntity;
-
-        gameEntity.setPublisher(publisher);
-
-        gameRepository.save(gameEntity);
+    @Override
+    public void addGame(GameEntityV2Dto gameModel) {
+//        GameEntity gameEntity = gameTransformer.getEntityFromGame(gameModel);
+//
+//        gameEntity.setUser(userRepository.findById(gameModel.getUserId()).get());
+//        gameEntity.setDeveloper(developerRepository.findById(gameModel.getDevId()).get());
+//
+//        List<PublisherEntity> all = publisherRepository.findAll();
+//
+//        Optional<PublisherEntity> byId = publisherRepository.findById(gameModel.getPubId());
+//        PublisherEntity publisherEntity = byId.get();
+//
+//        PublisherEntity publisher = publisherEntity;
+//
+//        gameEntity.setPublisher(publisher);
+//
+//        gameRepository.save(gameEntity);
     }
 
 }

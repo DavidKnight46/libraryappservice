@@ -58,8 +58,12 @@ public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
     }
 
     @Override
-    public void addGame(GameModelRequest gameModel) {
+    public void addGame(GameEntityV2Dto gameModel) {
+        gameModel.getId();
 
+        GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(gameModel);
+
+        gameEntityRepository.save(gameEntityV2);
     }
 
     private GameEntityV2Dto addGameEntityResponseList(GameEntityV2 gameEntityV2Dto) {

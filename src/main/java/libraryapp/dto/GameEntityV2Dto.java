@@ -6,7 +6,6 @@ import libraryapp.models.response.PublisherResponse;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-//@Data
 public class GameEntityV2Dto implements Serializable {
     private Integer id;
     private String gameName;
