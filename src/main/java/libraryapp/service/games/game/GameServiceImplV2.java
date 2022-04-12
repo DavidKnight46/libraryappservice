@@ -2,9 +2,8 @@ package libraryapp.service.games.game;
 
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntityV2;
-import libraryapp.models.request.GameModelRequest;
+import libraryapp.entities.user.UserEntity;
 import libraryapp.models.response.GameResponse;
-import libraryapp.repository.DeveloperRepository;
 import libraryapp.repository.GameEntityRepository;
 import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
@@ -13,7 +12,6 @@ import libraryapp.transformer.GameEntityV2Transformer;
 import libraryapp.transformer.GameEntityV2TransformerImpl;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,11 +21,9 @@ public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
     private final GameEntityRepository gameEntityRepository;
     private final UserRepository userRepository;
     private final GameEntityV2Transformer gameEntityV2Transformer;
-    private int userId;
 
     public GameServiceImplV2(GameEntityRepository gameEntityRepository,
-                             UserRepository userRepository,
-                             DeveloperRepository developerRepository) {
+                             UserRepository userRepository) {
         this.gameEntityRepository = gameEntityRepository;
         this.userRepository = userRepository;
         this.gameEntityV2Transformer = new GameEntityV2TransformerImpl();
@@ -35,8 +31,8 @@ public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
 
     @Override
     public List<GameEntityV2Dto> getCollection(SortBy sortBy, Order order, int userId) {
-        this.userId = userId;
-        return this.gameEntityRepository.findAllById(Collections.singleton(userId))
+        return this.gameEntityRepository.findAllByUser(userRepository.findById(userId).get())
+                .get()
                 .stream()
                 .map(this::addGameEntityResponseList)
                 .collect(Collectors.toList());
@@ -59,9 +55,10 @@ public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
 
     @Override
     public void addGame(GameEntityV2Dto gameModel) {
-        gameModel.getId();
+        UserEntity userEntity = userRepository.findById(gameModel.getUserId()).get();
 
         GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(gameModel);
+        gameEntityV2.setUser(userEntity);
 
         gameEntityRepository.save(gameEntityV2);
     }

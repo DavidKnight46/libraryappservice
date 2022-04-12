@@ -38,14 +38,6 @@ public class GameEntityV2 {
     @JoinColumn(name = "user_id", nullable = false)
     private UserEntity user;
 
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "developer_id", referencedColumnName = "id")
-//    private DeveloperEntity developer;
-//
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-//    @JoinColumn(name = "publisher_id", referencedColumnName = "id")
-//    private PublisherEntity publisher;
-
     public Integer getId() {
         return id;
     }
@@ -108,5 +100,13 @@ public class GameEntityV2 {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

@@ -22,21 +22,20 @@ public class GameV2Controller {
     }
 
     @GetMapping(path = "/getAllGames/{id}")
-    public List<GameResponse> getAllGames(@PathVariable(value = "id") String id){
-        List collection = gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
-
-        return collection;
-
+    public List<GameResponse> getAllGames(@PathVariable(value = "id") String id) {
+        return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
     }
 
     @PostMapping(path = "/addNewGame")
-    public void addGame(GameEntityV2Dto gameModelRequest){
+    public void addGame(@RequestBody GameEntityV2Dto gameModelRequest) {
         gameServices.addGame(gameModelRequest);
     }
 
     @PutMapping(path = "/updateGame")
-    public void updateGame(GameModelRequest gameModelRequest){}
+    public void updateGame(@RequestBody GameModelRequest gameModelRequest) {
+    }
 
     @DeleteMapping(path = "/deleteGame")
-    public void deleteGame(GameModelRequest gameModelRequest){}
+    public void deleteGame(GameModelRequest gameModelRequest) {
+    }
 }
