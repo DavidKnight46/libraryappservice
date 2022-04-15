@@ -3,7 +3,8 @@ package libraryapp.service.games.developer;
 import libraryapp.entities.games.DeveloperEntity;
 import libraryapp.models.response.DeveloperResponse;
 import libraryapp.repository.DeveloperRepository;
-import libraryapp.service.games.game.GameServicesImpl;
+import libraryapp.service.games.game.GameServiceImplV2;
+import libraryapp.service.games.game.GameServices;
 import libraryapp.transformer.DeveloperTransformerImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     private final DeveloperTransformerImpl developerTransformer;
     private final DeveloperRepository developerRepository;
-    private final GameServicesImpl gameServices;
+    private final GameServices gameServices;
 
-    public DeveloperServiceImpl(DeveloperRepository developerRepository, GameServicesImpl gameServices) {
+    public DeveloperServiceImpl(DeveloperRepository developerRepository, GameServiceImplV2 gameServices) {
         this.developerTransformer = new DeveloperTransformerImpl();
         this.developerRepository = developerRepository;
         this.gameServices = gameServices;

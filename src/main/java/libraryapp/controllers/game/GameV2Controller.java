@@ -2,7 +2,6 @@ package libraryapp.controllers.game;
 
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.request.GameModelRequest;
-import libraryapp.models.response.GameResponse;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServiceImplV2;
@@ -22,7 +21,7 @@ public class GameV2Controller {
     }
 
     @GetMapping(path = "/getAllGames/{id}")
-    public List<GameResponse> getAllGames(@PathVariable(value = "id") String id) {
+    public List<GameEntityV2Dto> getAllGames(@PathVariable(value = "id") String id) {
         return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
     }
 
@@ -32,7 +31,8 @@ public class GameV2Controller {
     }
 
     @PutMapping(path = "/updateGame")
-    public void updateGame(@RequestBody GameModelRequest gameModelRequest) {
+    public void updateGame(@RequestBody GameEntityV2Dto gameModelRequest) {
+        gameServices.updateGame(gameModelRequest);
     }
 
     @DeleteMapping(path = "/deleteGame")

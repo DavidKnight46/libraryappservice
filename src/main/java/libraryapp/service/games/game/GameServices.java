@@ -6,12 +6,12 @@ import libraryapp.service.CollectionService;
 
 import java.util.List;
 
-public interface GameServices<T> extends CollectionService<GameResponse> {
-    List<T> findGamesByDev_Name(String developerName);
-
-    List<T> findGamesByPub_Name(String developerName);
-
-    void addGame(T gameModel);
-
+public interface GameServices extends CollectionService<GameEntityV2Dto> {
     void addGame(GameEntityV2Dto gameModel);
+
+    void updateGame(GameEntityV2Dto gameModel);
+
+    List<GameEntityV2Dto> findGamesByDev_Name(String developerName);
+
+    List<GameEntityV2Dto> findGamesByPub_Name(String developerName);
 }

@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class GameEntityV2Dto implements Serializable {
+    private Integer id;
     private Integer userId;
     private String gameName;
     private String gameGenre;
@@ -18,7 +19,8 @@ public class GameEntityV2Dto implements Serializable {
     private Boolean isPreOrdered;
     private String platform;
 
-    public GameEntityV2Dto(Integer userId, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, UserEntityDto user, DeveloperResponse developer, PublisherResponse publisher, String platform) {
+    public GameEntityV2Dto(Integer id, Integer userId, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, UserEntityDto user, DeveloperResponse developer, PublisherResponse publisher, String platform) {
+        this.id = id;
         this.userId = userId;
         this.gameName = gameName;
         this.gameGenre = gameGenre;
@@ -27,6 +29,14 @@ public class GameEntityV2Dto implements Serializable {
         this.releaseDate = releaseDate;
         this.isPreOrdered = isPreOrdered;
         this.platform = platform;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getUserId() {

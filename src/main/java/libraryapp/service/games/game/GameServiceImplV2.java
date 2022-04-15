@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
+public class GameServiceImplV2 implements GameServices {
 
     private final GameEntityRepository gameEntityRepository;
     private final UserRepository userRepository;
@@ -39,8 +39,31 @@ public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
     }
 
     @Override
-    public GameResponse getItem(int id) {
-        return null;
+    public void addGame(GameEntityV2Dto gameModel) {
+        UserEntity userEntity = userRepository.findById(gameModel.getUserId()).get();
+
+        GameEntityV2 gameEntityV2 = new GameEntityV2();
+        gameEntityV2.setId(gameModel.getId());
+        gameEntityV2.setGameName(gameModel.getGameName());
+        gameEntityV2.setGameGenre(gameModel.getGameGenre());
+        gameEntityV2.setGameRating(gameModel.getGameRating());
+        gameEntityV2.setPlatform(gameModel.getPlatform());
+        gameEntityV2.setImageUrl(gameModel.getImageUrl());
+        gameEntityV2.setPreOrdered(gameModel.getPreOrdered());
+        gameEntityV2.setReleaseDate(gameModel.getReleaseDate());
+        gameEntityV2.setUser(userEntity);
+
+        gameEntityRepository.save(gameEntityV2);
+    }
+
+    @Override
+    public void updateGame(GameEntityV2Dto gameModel){
+        UserEntity userEntity = userRepository.findById(gameModel.getUserId()).get();
+
+        GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(gameModel);
+        gameEntityV2.setUser(userEntity);
+
+        gameEntityRepository.save(gameEntityV2);
     }
 
     @Override
@@ -51,16 +74,6 @@ public class GameServiceImplV2 implements GameServices<GameEntityV2Dto> {
     @Override
     public List<GameEntityV2Dto> findGamesByPub_Name(String developerName) {
         return null;
-    }
-
-    @Override
-    public void addGame(GameEntityV2Dto gameModel) {
-        UserEntity userEntity = userRepository.findById(gameModel.getUserId()).get();
-
-        GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(gameModel);
-        gameEntityV2.setUser(userEntity);
-
-        gameEntityRepository.save(gameEntityV2);
     }
 
     private GameEntityV2Dto addGameEntityResponseList(GameEntityV2 gameEntityV2Dto) {
