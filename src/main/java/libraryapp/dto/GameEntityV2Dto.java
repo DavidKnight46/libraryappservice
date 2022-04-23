@@ -29,6 +29,14 @@ public class GameEntityV2Dto implements Serializable {
         this.platform = platform;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getGameName() {
         return gameName;
     }

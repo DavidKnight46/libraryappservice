@@ -76,6 +76,8 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     private GameEntityV2Dto addGameEntityResponseList(GameEntityV2 gameEntityV2Dto) {
-        return gameEntityV2Transformer.fromEntity(gameEntityV2Dto);
+        GameEntityV2Dto gameEntityV2Dto1 = gameEntityV2Transformer.fromEntity(gameEntityV2Dto);
+
+        return gameEntityV2Dto1;
     }
 }
