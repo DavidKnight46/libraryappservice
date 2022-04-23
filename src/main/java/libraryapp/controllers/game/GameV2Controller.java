@@ -25,9 +25,10 @@ public class GameV2Controller {
         return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
     }
 
-    @PostMapping(path = "/addNewGame")
-    public void addGame(@RequestBody GameEntityV2Dto gameModelRequest) {
-        gameServices.addGame(gameModelRequest);
+    @PostMapping(path = "/addNewGame/{id}")
+    public void addGame(@RequestBody GameEntityV2Dto gameModelRequest,
+                        @PathVariable(value = "id") Integer id) {
+        gameServices.addGame(gameModelRequest, id);
     }
 
     @PutMapping(path = "/updateGame")

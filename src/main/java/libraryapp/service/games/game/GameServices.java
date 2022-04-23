@@ -7,7 +7,7 @@ import libraryapp.service.CollectionService;
 import java.util.List;
 
 public interface GameServices extends CollectionService<GameEntityV2Dto> {
-    void addGame(GameEntityV2Dto gameModel);
+    void addGame(GameEntityV2Dto gameModel, int id);
 
     List<GameEntityV2Dto> findGamesByDev_Name(String developerName);
 

@@ -51,8 +51,7 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
-    public void addGame(GameEntityV2Dto gameModel) {
-
+    public void addGame(GameEntityV2Dto gameModel, int id) {
         GameEntityV2 gameEntityV2 = new GameEntityV2();
         gameEntityV2.setGameName(gameModel.getGameName());
         gameEntityV2.setGameGenre(gameModel.getGameGenre());
@@ -61,6 +60,7 @@ public class GameServiceImplV2 implements GameServices {
         gameEntityV2.setImageUrl(gameModel.getImageUrl());
         gameEntityV2.setPreOrdered(gameModel.getPreOrdered());
         gameEntityV2.setReleaseDate(gameModel.getReleaseDate());
+        gameEntityV2.setUser(userRepository.findById(id).get());
 
         gameEntityRepository.save(gameEntityV2);
     }
