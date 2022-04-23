@@ -3,7 +3,6 @@ package libraryapp.service.games.game;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntityV2;
 import libraryapp.entities.user.UserEntity;
-import libraryapp.models.response.GameResponse;
 import libraryapp.repository.GameEntityRepository;
 import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
@@ -39,11 +38,22 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
+    public void editItem(GameEntityV2Dto item) {
+        GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(item);
+        gameEntityV2.setUser(userRepository.findById(1).get());
+
+        gameEntityRepository.save(gameEntityV2);
+    }
+
+    @Override
+    public void deleteItem(GameEntityV2Dto item) {
+        gameEntityRepository.delete(gameEntityV2Transformer.toEntity(item));
+    }
+
+    @Override
     public void addGame(GameEntityV2Dto gameModel) {
-        UserEntity userEntity = userRepository.findById(gameModel.getUserId()).get();
 
         GameEntityV2 gameEntityV2 = new GameEntityV2();
-        gameEntityV2.setId(gameModel.getId());
         gameEntityV2.setGameName(gameModel.getGameName());
         gameEntityV2.setGameGenre(gameModel.getGameGenre());
         gameEntityV2.setGameRating(gameModel.getGameRating());
@@ -51,17 +61,6 @@ public class GameServiceImplV2 implements GameServices {
         gameEntityV2.setImageUrl(gameModel.getImageUrl());
         gameEntityV2.setPreOrdered(gameModel.getPreOrdered());
         gameEntityV2.setReleaseDate(gameModel.getReleaseDate());
-        gameEntityV2.setUser(userEntity);
-
-        gameEntityRepository.save(gameEntityV2);
-    }
-
-    @Override
-    public void updateGame(GameEntityV2Dto gameModel){
-        UserEntity userEntity = userRepository.findById(gameModel.getUserId()).get();
-
-        GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(gameModel);
-        gameEntityV2.setUser(userEntity);
 
         gameEntityRepository.save(gameEntityV2);
     }

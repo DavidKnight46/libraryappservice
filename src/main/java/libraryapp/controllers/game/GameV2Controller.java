@@ -32,7 +32,7 @@ public class GameV2Controller {
 
     @PutMapping(path = "/updateGame")
     public void updateGame(@RequestBody GameEntityV2Dto gameModelRequest) {
-        gameServices.updateGame(gameModelRequest);
+        gameServices.editItem(gameModelRequest);
     }
 
     @DeleteMapping(path = "/deleteGame")

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 @Mapper
 public interface GameEntityV2Transformer {
 
-    GameEntityV2Dto fromEntity(GameEntityV2 gameEntityV2Dto);
+    GameEntityV2Dto fromEntity(GameEntityV2 gameEntityV2);
 
     GameEntityV2 toEntity(GameEntityV2Dto gameEntityV2Dto);
 }

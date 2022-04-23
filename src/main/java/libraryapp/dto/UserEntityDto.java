@@ -2,7 +2,6 @@ package libraryapp.dto;
 
 import java.io.Serializable;
 
-//@AllArgsConstructor
 public class UserEntityDto implements Serializable {
     private final int id;
     private final String userName;
