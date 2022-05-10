@@ -1,8 +1,8 @@
 package libraryapp.service.games.game;
 
+import libraryapp.aws.AWSRDSClient;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntityV2;
-import libraryapp.entities.user.UserEntity;
 import libraryapp.repository.GameEntityRepository;
 import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
@@ -20,16 +20,21 @@ public class GameServiceImplV2 implements GameServices {
     private final GameEntityRepository gameEntityRepository;
     private final UserRepository userRepository;
     private final GameEntityV2Transformer gameEntityV2Transformer;
+    private final AWSRDSClient awsRdsClient;
 
     public GameServiceImplV2(GameEntityRepository gameEntityRepository,
-                             UserRepository userRepository) {
+                             UserRepository userRepository,
+                             AWSRDSClient awsRdsClient) {
         this.gameEntityRepository = gameEntityRepository;
         this.userRepository = userRepository;
+        this.awsRdsClient = awsRdsClient;
         this.gameEntityV2Transformer = new GameEntityV2TransformerImpl();
     }
 
     @Override
     public List<GameEntityV2Dto> getCollection(SortBy sortBy, Order order, int userId) {
+
+
         return this.gameEntityRepository.findAllByUser(userRepository.findById(userId).get())
                 .get()
                 .stream()

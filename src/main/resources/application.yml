@@ -2,6 +2,10 @@ server:
   servlet:
     context-path: /libraryservice
 
+aws:
+  rds:
+    endpoint: 'endpoint'
+
 spring:
   jpa:
     hibernate:
