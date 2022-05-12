@@ -5,40 +5,40 @@ import libraryapp.entities.user.UserEntity;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Table(name = "gameentity")
+@Table(name = "gameentity", schema = "libraryservice")
 @Entity
 public class GameEntityV2 {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue
+    private long id;
 
-    @Column(name = "game_name")
+    @Column(name = "gamename")
     private String gameName;
 
-    @Column(name = "game_genre")
+    @Column(name = "gamegenre")
     private String gameGenre;
 
-    @Column(name = "game_rating")
+    @Column(name = "gamerating")
     private Float gameRating;
 
-    @Column(name = "image_url")
+    @Column(name = "imageurl")
     private String imageUrl;
 
-    @Column(name = "release_date")
+    @Column(name = "releasedate")
     private LocalDate releaseDate;
 
-    @Column(name = "pre_ordered")
+    @Column(name = "preordered")
     private Boolean isPreOrdered;
 
     @Column(name = "gameplatform")
     private String platform;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "userid", nullable = false)
     private UserEntity user;
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 

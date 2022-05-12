@@ -3,17 +3,17 @@ package libraryapp.dto;
 import java.io.Serializable;
 
 public class UserEntityDto implements Serializable {
-    private final int id;
+    private final long id;
     private final String userName;
     private final String password;
 
-    public UserEntityDto(int id, String userName, String password) {
+    public UserEntityDto(long id, String userName, String password) {
         this.id = id;
         this.userName = userName;
         this.password = password;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

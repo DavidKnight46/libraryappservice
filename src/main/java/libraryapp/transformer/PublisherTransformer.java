@@ -9,7 +9,7 @@ import org.mapstruct.Mappings;
 @Mapper
 public interface PublisherTransformer {
 
-    @Mappings({@Mapping(source = "publisherResponse.name", target= "name")})
+    @Mappings({@Mapping(source = "publisherResponse.name", target = "name")})
     PublisherEntity toPublisherEntity(PublisherResponse publisherResponse);
 
     PublisherResponse fromPublisherEntity(PublisherEntity publisherEntity);

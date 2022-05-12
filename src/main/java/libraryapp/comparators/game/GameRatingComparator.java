@@ -1,17 +1,17 @@
 package libraryapp.comparators.game;
 
-import libraryapp.entities.games.GameEntity;
+import libraryapp.entities.games.GameEntityV2;
 
 import java.util.Comparator;
 
-public class GameRatingComparator implements Comparator<GameEntity> {
+public class GameRatingComparator implements Comparator<GameEntityV2> {
 
     @Override
-    public int compare(GameEntity o1, GameEntity o2) {
-        if(o1.getRating() > o2.getRating()) {
-            return o1.getRating();
+    public int compare(GameEntityV2 o1, GameEntityV2 o2) {
+        if (o1.getGameRating() > o2.getGameRating()) {
+            return Math.round(o1.getGameRating());
         } else {
-            return o2.getRating();
+            return Math.round(o2.getGameRating());
         }
     }
 }

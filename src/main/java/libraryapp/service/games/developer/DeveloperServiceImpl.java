@@ -51,7 +51,7 @@ public class DeveloperServiceImpl implements DeveloperService {
         developerRepository.deleteById(Integer.parseInt(developerId));
     }
 
-    private DeveloperResponse createDeveloperModelBuilder(DeveloperEntity builderModel){
+    private DeveloperResponse createDeveloperModelBuilder(DeveloperEntity builderModel) {
         return developerTransformer.toDeveloperModel(builderModel);
     }
 }

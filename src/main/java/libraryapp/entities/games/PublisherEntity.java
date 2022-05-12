@@ -1,6 +1,7 @@
 package libraryapp.entities.games;
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
@@ -10,7 +11,8 @@ import javax.persistence.*;
 public class PublisherEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "id_native")
+    @GenericGenerator(name = "id_native", strategy = "native")
     private int id;
 
     @Column(name = "pub_name")

@@ -12,7 +12,7 @@ import org.mapstruct.Mappings;
 public interface UserTransformer {
 
     @Mappings({@Mapping(source = "userEntity.userName", target = "userName"),
-               @Mapping(source = "userEntity.password", target = "password")})
+            @Mapping(source = "userEntity.password", target = "password")})
     UserModel fromUserEntity(UserEntity userEntity);
 
     UserEntity toUserEntity(UserRequest userModel);

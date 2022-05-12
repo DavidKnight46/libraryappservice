@@ -49,20 +49,22 @@
             <artifactId>mapstruct</artifactId>
             <version>1.5.0.Beta1</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/javax.enterprise/cdi-api -->
         <dependency>
             <groupId>javax.enterprise</groupId>
             <artifactId>cdi-api</artifactId>
             <version>2.0.SP1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.amazonaws/aws-java-sdk-rds -->
         <dependency>
             <groupId>com.amazonaws</groupId>
             <artifactId>aws-java-sdk-rds</artifactId>
             <version>1.12.215</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.3.5</version>
+        </dependency>
     </dependencies>
 
     <build>

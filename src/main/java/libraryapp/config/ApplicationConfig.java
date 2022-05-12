@@ -12,7 +12,7 @@ public class ApplicationConfig {
     private String endpoint;
 
     @Bean
-    public AWSRDSClient awsRdsClient(){
+    public AWSRDSClient awsRdsClient() {
         AWSRDSClient awsrdsClient = new AWSRDSClient();
         //awsrdsClient.setEndpoint(endpoint);
         //awsrdsClient.setRegion(Region.getRegion(Regions.AP_EAST_1));

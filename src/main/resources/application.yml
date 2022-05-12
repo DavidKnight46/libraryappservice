@@ -14,10 +14,10 @@ spring:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       ddl-auto: update
     show-sql: false
-    database-platform: org.hibernate.dialect.MySQL8Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:mysql://localhost:3306/libraryservice
-    username: dev
-    password: developer
-    driver-class-name: 'com.mysql.jdbc.Driver'
+    url: jdbc:postgresql://localhost:56908/libraryservice
+    username: postgres
+    password: password
+    driver-class-name: 'org.postgresql.Driver'
 

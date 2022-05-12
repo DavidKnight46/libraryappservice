@@ -1,6 +1,6 @@
 package libraryapp.entities.user;
 
-import libraryapp.entities.games.GameEntity;
+import libraryapp.entities.games.GameEntityV2;
 
 import javax.persistence.*;
 import java.util.List;
@@ -10,8 +10,8 @@ import java.util.List;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    @GeneratedValue
+    private long id;
 
     @Column(name = "userName")
     private String userName;
@@ -20,9 +20,9 @@ public class UserEntity {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<GameEntity> gameEntity;
+    private List<GameEntityV2> gameEntity;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -46,11 +46,11 @@ public class UserEntity {
         this.password = password;
     }
 
-    public List<GameEntity> getGameEntity() {
+    public List<GameEntityV2> getGameEntity() {
         return gameEntity;
     }
 
-    public void setGameEntity(List<GameEntity> gameEntity) {
+    public void setGameEntity(List<GameEntityV2> gameEntity) {
         this.gameEntity = gameEntity;
     }
 }
