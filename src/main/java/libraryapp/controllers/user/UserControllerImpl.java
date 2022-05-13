@@ -3,10 +3,7 @@ package libraryapp.controllers.user;
 import libraryapp.dto.UserEntityDto;
 import libraryapp.models.request.UserRequest;
 import libraryapp.service.user.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/user")
@@ -24,7 +21,8 @@ public class UserControllerImpl {
         return userService.checkUser(userName, password);
     }
 
-    public void addUser(UserRequest user) {
+    @PostMapping(path = "/adduser")
+    public void addUser(@RequestBody UserRequest user) {
         userService.addUser(user);
     }
 

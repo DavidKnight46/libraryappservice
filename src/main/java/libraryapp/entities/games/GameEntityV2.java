@@ -1,6 +1,7 @@
 package libraryapp.entities.games;
 
 import libraryapp.entities.user.UserEntity;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.time.LocalDate;

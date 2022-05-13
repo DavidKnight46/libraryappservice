@@ -11,7 +11,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Integer id;
 
     @Column(name = "userName")
     private String userName;
@@ -22,7 +22,7 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     private List<GameEntityV2> gameEntity;
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
