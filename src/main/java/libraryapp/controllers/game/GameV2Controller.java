@@ -1,7 +1,6 @@
 package libraryapp.controllers.game;
 
 import libraryapp.dto.GameEntityV2Dto;
-import libraryapp.models.request.GameModelRequest;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServiceImplV2;
@@ -37,6 +36,7 @@ public class GameV2Controller {
     }
 
     @DeleteMapping(path = "/deleteGame")
-    public void deleteGame(GameModelRequest gameModelRequest) {
+    public void deleteGame(@RequestBody GameEntityV2Dto gameEntityV2Dto) {
+        gameServices.deleteItem(gameEntityV2Dto);
     }
 }

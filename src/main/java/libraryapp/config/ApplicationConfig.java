@@ -1,6 +1,8 @@
 package libraryapp.config;
 
-import libraryapp.aws.AWSRDSClient;
+import com.amazonaws.client.builder.AwsClientBuilder;
+import com.amazonaws.services.rds.AmazonRDS;
+import com.amazonaws.services.rds.AmazonRDSClientBuilder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,12 +13,13 @@ public class ApplicationConfig {
     @Value("${aws.rds.endpoint}")
     private String endpoint;
 
-    @Bean
-    public AWSRDSClient awsRdsClient() {
-        AWSRDSClient awsrdsClient = new AWSRDSClient();
-        //awsrdsClient.setEndpoint(endpoint);
-        //awsrdsClient.setRegion(Region.getRegion(Regions.AP_EAST_1));
+    @Value("${aws.rds.signingregion}")
+    private String signingRegion;
 
-        return awsrdsClient;
+    @Bean
+    public AmazonRDS awsRdsClient() {
+        return AmazonRDSClientBuilder.standard()
+                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(endpoint, signingRegion))
+                .build();
     }
 }

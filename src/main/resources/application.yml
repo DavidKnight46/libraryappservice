@@ -5,6 +5,7 @@ server:
 aws:
   rds:
     endpoint: 'endpoint'
+    signingregion: 'region'
 
 spring:
   jpa:

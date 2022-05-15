@@ -1,6 +1,6 @@
 package libraryapp.service.games.game;
 
-import libraryapp.aws.AWSRDSClient;
+import com.amazonaws.services.rds.AmazonRDS;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntityV2;
 import libraryapp.repository.GameEntityRepository;
@@ -20,11 +20,11 @@ public class GameServiceImplV2 implements GameServices {
     private final GameEntityRepository gameEntityRepository;
     private final UserRepository userRepository;
     private final GameEntityV2Transformer gameEntityV2Transformer;
-    private final AWSRDSClient awsRdsClient;
+    private final AmazonRDS awsRdsClient;
 
     public GameServiceImplV2(GameEntityRepository gameEntityRepository,
                              UserRepository userRepository,
-                             AWSRDSClient awsRdsClient) {
+                             AmazonRDS awsRdsClient) {
         this.gameEntityRepository = gameEntityRepository;
         this.userRepository = userRepository;
         this.awsRdsClient = awsRdsClient;
@@ -33,7 +33,7 @@ public class GameServiceImplV2 implements GameServices {
 
     @Override
     public List<GameEntityV2Dto> getCollection(SortBy sortBy, Order order, int userId) {
-
+        //awsRdsClient.describeDBInstances().getDBInstances().get(0).getDBName();
 
         return this.gameEntityRepository.findAllByUser(userRepository.findById(userId).get())
                 .get()
@@ -51,8 +51,8 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
-    public void deleteItem(GameEntityV2Dto item) {
-        gameEntityRepository.delete(gameEntityV2Transformer.toEntity(item));
+    public void deleteItem(GameEntityV2Dto gameEntityV2Dto) {
+        gameEntityRepository.deleteById(gameEntityV2Dto.getId());
     }
 
     @Override

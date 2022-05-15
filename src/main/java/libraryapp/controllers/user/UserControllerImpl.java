@@ -26,7 +26,8 @@ public class UserControllerImpl {
         userService.addUser(user);
     }
 
-    public void deleteUser(String userId) {
-        userService.deleteUser(userId);
+    @DeleteMapping(path = "/delete/{id}")
+    public void deleteUser(@PathVariable(name = "id") String id) {
+        userService.deleteUser(id);
     }
 }

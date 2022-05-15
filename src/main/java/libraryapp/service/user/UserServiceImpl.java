@@ -29,7 +29,6 @@ public class UserServiceImpl implements UserService {
 
             userEntityDto.set(new UserEntityDto(userEntity.getId(), userEntity.getUserName(), userEntity.getPassword()));
         }, () -> {
-            //TODO
             throw new IllegalArgumentException();
         });
 
@@ -38,8 +37,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void addUser(UserRequest user) {
-        UserEntity userEntity = userTransformer.toUserEntity(user);
-
         userRepository.save(userTransformer.toUserEntity(user));
     }
 
