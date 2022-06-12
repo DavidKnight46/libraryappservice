@@ -11,7 +11,7 @@ public class GameEntityV2 {
 
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
     @Column(name = "gamename")
     private String gameName;
@@ -38,11 +38,11 @@ public class GameEntityV2 {
     @JoinColumn(name = "userid", nullable = false)
     private UserEntity user;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

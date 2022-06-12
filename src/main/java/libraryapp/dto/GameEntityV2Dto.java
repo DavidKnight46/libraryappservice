@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 public class GameEntityV2Dto implements Serializable {
-    private Integer id;
+    private Long id;
     private String gameName;
     private String gameGenre;
     private Float gameRating;
@@ -17,8 +17,9 @@ public class GameEntityV2Dto implements Serializable {
     private LocalDate releaseDate;
     private Boolean isPreOrdered;
     private String platform;
+    private Integer userid;
 
-    public GameEntityV2Dto(Integer id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, DeveloperResponse developer, PublisherResponse publisher, String platform) {
+    public GameEntityV2Dto(Long id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, DeveloperResponse developer, PublisherResponse publisher, String platform, Integer userid) {
         this.id = id;
         this.gameName = gameName;
         this.gameGenre = gameGenre;
@@ -27,13 +28,14 @@ public class GameEntityV2Dto implements Serializable {
         this.releaseDate = releaseDate;
         this.isPreOrdered = isPreOrdered;
         this.platform = platform;
+        this.userid = userid;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -91,5 +93,13 @@ public class GameEntityV2Dto implements Serializable {
 
     public void setPlatform(String platform) {
         this.platform = platform;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 }

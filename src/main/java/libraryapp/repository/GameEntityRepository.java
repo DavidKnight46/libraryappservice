@@ -12,4 +12,6 @@ import java.util.Optional;
 public interface GameEntityRepository extends JpaRepository<GameEntityV2, Integer> {
 
     Optional<List<GameEntityV2>> findAllByUser(UserEntity user);
+
+    void deleteById(Long id);
 }

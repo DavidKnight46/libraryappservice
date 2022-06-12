@@ -3,6 +3,7 @@ package libraryapp.service.games.game;
 import com.amazonaws.services.rds.AmazonRDS;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntityV2;
+import libraryapp.entities.user.UserEntity;
 import libraryapp.repository.GameEntityRepository;
 import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
@@ -11,6 +12,7 @@ import libraryapp.transformer.GameEntityV2Transformer;
 import libraryapp.transformer.GameEntityV2TransformerImpl;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,14 +47,20 @@ public class GameServiceImplV2 implements GameServices {
     @Override
     public void editItem(GameEntityV2Dto item) {
         GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(item);
-        gameEntityV2.setUser(userRepository.findById(1).get());
+
+        gameEntityV2.setUser(userRepository.findById(Math.toIntExact(item.getUserid())).get());
 
         gameEntityRepository.save(gameEntityV2);
     }
 
     @Override
+    @Transactional
     public void deleteItem(GameEntityV2Dto gameEntityV2Dto) {
-        gameEntityRepository.deleteById(gameEntityV2Dto.getId());
+        GameEntityV2 gameEntityV2 = gameEntityV2Transformer.toEntity(gameEntityV2Dto);
+
+
+
+        gameEntityRepository.deleteById(23l);
     }
 
     @Override
@@ -81,8 +89,6 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     private GameEntityV2Dto addGameEntityResponseList(GameEntityV2 gameEntityV2Dto) {
-        GameEntityV2Dto gameEntityV2Dto1 = gameEntityV2Transformer.fromEntity(gameEntityV2Dto);
-
-        return gameEntityV2Dto1;
+        return gameEntityV2Transformer.fromEntity(gameEntityV2Dto);
     }
 }
