@@ -1,27 +1,31 @@
 package libraryapp.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
 
 @Configuration
 public class ApplicationConfig {
 
-    @Value("${aws.rds.endpoint}")
-    private String endpoint;
-
-    @Value("${aws.rds.signingregion}")
-    private String signingRegion;
-
     @Value("${aws.endpoint}")
     private String endpointUrl;
 
-    public String getEndpoint() {
-        return endpoint;
+    @Bean
+    DynamoDbClient createClient() {
+        return DynamoDbClient.builder()
+                .region(Region.EU_WEST_2)
+                .credentialsProvider(DefaultCredentialsProvider.create())
+                .build();
     }
 
-    public String getSigningRegion() {
-        return signingRegion;
+    @Bean
+    String tableName() {
+        return "test";
+
     }
 
     public String getEndpointUrl() {

@@ -2,39 +2,9 @@ server:
   servlet:
     context-path: /libraryservice
 
-#aws:
-#  rds:
-#    endpoint: 'endpoint'
-#    signingregion: 'region'
-
-spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://testlibraryservice.crlrdmxs0f3h.eu-west-2.rds.amazonaws.com:5432/testlibraryservice
-    username: postgres
-    password: Password123
-
 ---
 
 spring:
-  jpa:
-    hibernate:
-      naming:
-        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-      ddl-auto: update
-    show-sql: false
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-  datasource:
-    url: jdbc:postgresql://localhost:56908/libraryservice
-    username: postgres
-    password: password
-    driver-class-name: 'org.postgresql.Driver'
   config:
     activate:
       on-profile: local

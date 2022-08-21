@@ -1,12 +1,14 @@
 package libraryapp.aws.dynamo;
 
-import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.CreateTableResponse;
 
+import java.util.List;
+
 public interface AWSDynamoDBClientI {
-    CreateTableResponse createTable(DynamoDbClient dynamoDbClient);
+    CreateTableResponse createTable();
 
-    String getItem(DynamoDbClient dynamoDbClient, String name, String itemToGet);
+    List<AWSDynamoDBModel> getItems(String name);
 
-    void putItem(DynamoDbClient dynamoDbClient, AWSDynamoDBModel model);
+    void putItem(AWSDynamoDBModel model);
+
 }

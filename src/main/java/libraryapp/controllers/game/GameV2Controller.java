@@ -1,5 +1,6 @@
 package libraryapp.controllers.game;
 
+import libraryapp.aws.dynamo.AWSDynamoDBModel;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
@@ -20,8 +21,8 @@ public class GameV2Controller {
     }
 
     @GetMapping(path = "/getAllGames/{id}")
-    public List<GameEntityV2Dto> getAllGames(@PathVariable(value = "id") String id) {
-        return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
+    public List<AWSDynamoDBModel> getAllGames(@PathVariable(value = "id") String id) {
+        return gameServices.getCollection(SortBy.NAME, Order.DESC, id);
     }
 
     @PostMapping(path = "/addNewGame/{id}")
@@ -32,11 +33,11 @@ public class GameV2Controller {
 
     @PutMapping(path = "/updateGame")
     public void updateGame(@RequestBody GameEntityV2Dto gameModelRequest) {
-        gameServices.editItem(gameModelRequest);
+        //gameServices.editItem(gameModelRequest);
     }
 
     @DeleteMapping(path = "/deleteGame")
     public void deleteGame(@RequestBody GameEntityV2Dto gameEntityV2Dto) {
-        gameServices.deleteItem(gameEntityV2Dto);
+        //gameServices.deleteItem(gameEntityV2Dto);
     }
 }

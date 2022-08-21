@@ -3,7 +3,7 @@ package libraryapp.service;
 import java.util.List;
 
 public interface CollectionService<T> {
-    List<T> getCollection(SortBy sortBy, Order order, int userId);
+    List<T> getCollection(SortBy sortBy, Order order, String userName);
 
     void editItem(T item);
 
