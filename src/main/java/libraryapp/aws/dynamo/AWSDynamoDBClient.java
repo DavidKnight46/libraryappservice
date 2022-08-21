@@ -15,7 +15,7 @@ public class AWSDynamoDBClient implements AWSDynamoDBClientI{
     }
 
     @Override
-    public CreateTableResponse createTable(DynamoDbClient dynamoDbClient, String tableName) {
+    public CreateTableResponse createTable(DynamoDbClient dynamoDbClient) {
         return dynamoDbClient.createTable(CreateTableRequest.builder()
                 .tableName(tableName)
                 .attributeDefinitions(
@@ -49,6 +49,7 @@ public class AWSDynamoDBClient implements AWSDynamoDBClientI{
     @Override
     public void putItem(DynamoDbClient dynamoDbClient, AWSDynamoDBModel model) {
         Map<String, AttributeValue> map = new HashMap();
+        map.put("UserName", AttributeValue.fromS(model.getUserName()));
         map.put("Genre", AttributeValue.fromS(model.getGenre()));
         map.put("GameName", AttributeValue.fromS(model.getName()));
         map.put("Platform", AttributeValue.fromS(model.getPlatform()));

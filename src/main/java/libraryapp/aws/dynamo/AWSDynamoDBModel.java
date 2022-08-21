@@ -8,4 +8,5 @@ public class AWSDynamoDBModel {
     private String name;
     private String genre;
     private String platform;
+    private String userName;
 }
