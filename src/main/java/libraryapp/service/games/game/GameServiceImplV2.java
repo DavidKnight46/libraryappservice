@@ -3,7 +3,6 @@ package libraryapp.service.games.game;
 import com.amazonaws.services.rds.AmazonRDS;
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.entities.games.GameEntityV2;
-import libraryapp.entities.user.UserEntity;
 import libraryapp.repository.GameEntityRepository;
 import libraryapp.repository.UserRepository;
 import libraryapp.service.Order;
@@ -60,7 +59,7 @@ public class GameServiceImplV2 implements GameServices {
 
 
 
-        gameEntityRepository.deleteById(23l);
+        gameEntityRepository.deleteById(23L);
     }
 
     @Override

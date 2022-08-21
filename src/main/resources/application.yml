@@ -2,10 +2,10 @@ server:
   servlet:
     context-path: /libraryservice
 
-aws:
-  rds:
-    endpoint: 'endpoint'
-    signingregion: 'region'
+#aws:
+#  rds:
+#    endpoint: 'endpoint'
+#    signingregion: 'region'
 
 spring:
   jpa:
@@ -38,5 +38,7 @@ spring:
   config:
     activate:
       on-profile: local
+aws:
+  endpoint: https://localhost.localstack.cloud:4566
 
 
