@@ -1,7 +1,7 @@
 package libraryapp.controllers.game;
 
-import libraryapp.aws.dynamo.AWSDynamoDBModel;
 import libraryapp.dto.GameEntityV2Dto;
+import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServiceImplV2;

@@ -1,4 +1,4 @@
-package libraryapp.aws.dynamo;
+package libraryapp.models;
 
 import lombok.Value;
 

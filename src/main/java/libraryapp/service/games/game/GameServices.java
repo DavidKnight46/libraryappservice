@@ -1,7 +1,7 @@
 package libraryapp.service.games.game;
 
-import libraryapp.aws.dynamo.AWSDynamoDBModel;
 import libraryapp.dto.GameEntityV2Dto;
+import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.CollectionService;
 
 import java.util.List;

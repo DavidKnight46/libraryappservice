@@ -1,8 +1,8 @@
 package libraryapp.service.games.game;
 
-import libraryapp.aws.dynamo.AWSDynamoDBClient;
-import libraryapp.aws.dynamo.AWSDynamoDBModel;
+import libraryapp.aws.dynamo.AWSDynamoDBClientGame;
 import libraryapp.dto.GameEntityV2Dto;
+import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.Order;
 import libraryapp.service.SortBy;
 import org.springframework.stereotype.Service;
@@ -11,9 +11,9 @@ import java.util.List;
 
 @Service
 public class GameServiceImplV2 implements GameServices {
-    private final AWSDynamoDBClient dyanmoDbClient;
+    private final AWSDynamoDBClientGame dyanmoDbClient;
 
-    public GameServiceImplV2(AWSDynamoDBClient createClient) {
+    public GameServiceImplV2(AWSDynamoDBClientGame createClient) {
         this.dyanmoDbClient = createClient;
     }
 

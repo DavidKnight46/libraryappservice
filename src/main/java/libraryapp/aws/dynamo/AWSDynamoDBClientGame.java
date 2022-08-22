@@ -1,5 +1,6 @@
 package libraryapp.aws.dynamo;
 
+import libraryapp.models.AWSDynamoDBModel;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
@@ -10,12 +11,12 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class AWSDynamoDBClient implements AWSDynamoDBClientI {
+public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
 
     private final String tableName;
     private final DynamoDbClient dynamoDbClient;
 
-    public AWSDynamoDBClient(String tableName, DynamoDbClient createClient) {
+    public AWSDynamoDBClientGame(String tableName, DynamoDbClient createClient) {
         this.tableName = tableName;
         this.dynamoDbClient = createClient;
     }

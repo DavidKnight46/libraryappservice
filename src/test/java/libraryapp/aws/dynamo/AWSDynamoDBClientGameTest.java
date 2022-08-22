@@ -3,10 +3,7 @@ package libraryapp.aws.dynamo;
 import libraryapp.config.ApplicationConfig;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
@@ -15,9 +12,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 //@ExtendWith(SpringExtension.class)
 //@SpringBootTest
-class AWSDynamoDBClientTest {
+class AWSDynamoDBClientGameTest {
 
-    private AWSDynamoDBClientI underTest;
+    private AWSDynamoDBClientGameI underTest;
 
     private ApplicationConfig config;
 
@@ -26,7 +23,7 @@ class AWSDynamoDBClientTest {
 
     @BeforeEach
     public void init(){
-        underTest = new AWSDynamoDBClient("test", createClient);
+        underTest = new AWSDynamoDBClientGame("test", createClient);
     }
 
     @Test
