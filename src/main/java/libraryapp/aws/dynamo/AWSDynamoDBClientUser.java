@@ -35,13 +35,26 @@ public class AWSDynamoDBClientUser implements AWSDynamoDBClientUserI {
 
     @Override
     public boolean checkUser(String name, String password) {
-        return true;
+        Map<String, AttributeValue> keyMap = new HashMap();
+        keyMap.put("username",AttributeValue.fromS(name));
+
+        GetItemRequest getItemRequest = GetItemRequest.builder()
+                .tableName("users")
+                .key(keyMap)
+                .attributesToGet("Password")
+                .build();
+
+        GetItemResponse itemResponse = dynamoDbClient.getItem(getItemRequest);
+
+        boolean isValidUser = itemResponse.item().get("Password").s().contentEquals(password);
+
+        return isValidUser;
     }
 
     @Override
     public void createUser(String username, String password) {
         Map<String, AttributeValue> map = new HashMap();
-        map.put("UserName", AttributeValue.fromS(username));
+        map.put("username", AttributeValue.fromS(username));
         map.put("Password", AttributeValue.fromS(password));
 
         try {
