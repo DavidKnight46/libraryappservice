@@ -18,7 +18,7 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
-    public List<AWSDynamoDBModel> getCollection(SortBy sortBy, Order order, String userName) {
+    public List<AWSDynamoDBModel> getCollection(String userName) {
         return dyanmoDbClient.getItems(userName);
     }
 

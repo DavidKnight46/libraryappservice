@@ -20,9 +20,9 @@ public class GameV2Controller {
         this.gameServices = gameServices;
     }
 
-    @GetMapping(path = "/getAllGames/{id}")
-    public List<AWSDynamoDBModel> getAllGames(@PathVariable(value = "id") String id) {
-        return gameServices.getCollection(SortBy.NAME, Order.DESC, id);
+    @GetMapping(path = "/getAllGames/{userName}")
+    public List<AWSDynamoDBModel> getAllGames(@PathVariable(value = "userName") String userName) {
+        return gameServices.getCollection(userName);
     }
 
     @PostMapping(path = "/addNewGame/{id}")

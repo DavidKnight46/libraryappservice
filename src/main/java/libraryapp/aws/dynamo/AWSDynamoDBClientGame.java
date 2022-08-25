@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Component
 public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
@@ -40,34 +41,22 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
 
     @Override
     public List<AWSDynamoDBModel> getItems(String userName) {
-        Map<String, Condition> map = new HashMap<>();
-        map.put("UserName", Condition.builder()
-                .comparisonOperator(ComparisonOperator.EQ)
-                .attributeValueList(AttributeValue.builder().s(userName).build())
-                .build());
+        ScanRequest scanRequest = ScanRequest.builder().tableName(userName).attributesToGet("GameName", "Platform", "Genre").build();
+        ScanResponse scanResponse = dynamoDbClient.scan(scanRequest);
 
-        QueryRequest queryRequest = QueryRequest.builder()
-                .keyConditions(map)
-                .tableName(this.tableName)
-                .attributesToGet("Genre", "Platform", "GameName")
-                .build();
+        return scanResponse.items().stream().map(this::mapToAWSDynamoDBModel).collect(Collectors.toList());
+    }
 
-        QueryResponse query = dynamoDbClient.query(queryRequest);
+    private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map){
+        return new AWSDynamoDBModel(map.get("GameName").s(),
+                map.get("Genre").s(),
+                map.get("Platform").s(),
+                "");
 
-        ArrayList<AWSDynamoDBModel> awsDynamoDBModelArrayList = new ArrayList();
-
-        for (Map<String, AttributeValue> e : query.items()) {
-            awsDynamoDBModelArrayList.add(new AWSDynamoDBModel(e.get("GameName").s(),
-                    e.get("Genre").s(),
-                    e.get("Platform").s(),
-                    userName));
-        }
-
-        return awsDynamoDBModelArrayList;
     }
 
     @Override
-    public void putItem(AWSDynamoDBModel model) {
+    public void putItem(AWSDynamoDBModel model, String tableName) {
         Map<String, AttributeValue> map = new HashMap();
         map.put("UserName", AttributeValue.fromS(model.getUserName()));
         map.put("Genre", AttributeValue.fromS(model.getGenre()));
@@ -75,7 +64,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         map.put("Platform", AttributeValue.fromS(model.getPlatform()));
 
         try {
-            dynamoDbClient.putItem(PutItemRequest.builder().tableName(this.tableName).item(map).build());
+            dynamoDbClient.putItem(PutItemRequest.builder().tableName(model.getUserName()).item(map).build());
         } catch (Exception e) {
             e.getMessage();
         }

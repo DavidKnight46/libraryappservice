@@ -10,6 +10,6 @@ public interface AWSDynamoDBClientGameI {
 
     List<AWSDynamoDBModel> getItems(String name);
 
-    void putItem(AWSDynamoDBModel model);
+    void putItem(AWSDynamoDBModel model, String tableName);
 
 }

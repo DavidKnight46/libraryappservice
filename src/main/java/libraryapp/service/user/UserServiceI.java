@@ -1,7 +1,6 @@
 package libraryapp.service.user;
 
 import libraryapp.aws.dynamo.AWSDynamoDBClientUser;
-import libraryapp.dto.UserEntityDto;
 import libraryapp.models.request.UserRequest;
 import org.springframework.stereotype.Service;
 

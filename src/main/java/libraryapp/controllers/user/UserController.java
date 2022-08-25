@@ -22,11 +22,10 @@ public class UserController {
         userService.addUser(userRequest);
      }
 
-     @GetMapping(path = "/checkUser/{userName}/{password}")
+     @PostMapping(path = "/checkUser")
      @ResponseStatus(HttpStatus.OK)
      @ResponseBody
-     public boolean checkUser(@PathVariable(value = "userName") String userName,
-                           @PathVariable(value = "password") String password){
-        return userService.checkUser( userName, password );
+     public boolean checkUser(@RequestBody UserRequest userRequest){
+        return userService.checkUser(userRequest.getUserName(), userRequest.getPassword() );
      }
 }
