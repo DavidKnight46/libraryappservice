@@ -11,9 +11,11 @@ public class GameEntityV2Dto implements Serializable {
     private Long id;
     private String gameName;
     private String gameGenre;
+
     private Float gameRating;
     private String imageUrl;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
+
     private LocalDate releaseDate;
     private Boolean isPreOrdered;
     private String platform;

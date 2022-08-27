@@ -2,8 +2,6 @@ package libraryapp.controllers.game;
 
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.AWSDynamoDBModel;
-import libraryapp.service.Order;
-import libraryapp.service.SortBy;
 import libraryapp.service.games.game.GameServiceImplV2;
 import libraryapp.service.games.game.GameServices;
 import org.springframework.web.bind.annotation.*;
@@ -25,10 +23,10 @@ public class GameV2Controller {
         return gameServices.getCollection(userName);
     }
 
-    @PostMapping(path = "/addNewGame/{id}")
+    @PostMapping(path = "/addNewGame/{userName}")
     public void addGame(@RequestBody GameEntityV2Dto gameModelRequest,
-                        @PathVariable(value = "id") Integer id) {
-        gameServices.addGame(gameModelRequest, id);
+                        @PathVariable(value = "userName") String userName) {
+        gameServices.addGame(gameModelRequest, userName);
     }
 
     @PutMapping(path = "/updateGame")

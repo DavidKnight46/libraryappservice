@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,8 +40,9 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
 
     @Override
     public List<AWSDynamoDBModel> getItems(String userName) {
-        ScanRequest scanRequest = ScanRequest.builder().tableName(userName).attributesToGet("GameName", "Platform", "Genre").build();
-        ScanResponse scanResponse = dynamoDbClient.scan(scanRequest);
+        ScanResponse scanResponse = dynamoDbClient.scan(ScanRequest.builder()
+                .tableName(userName)
+                .attributesToGet("GameName", "Platform", "Genre").build());
 
         return scanResponse.items().stream().map(this::mapToAWSDynamoDBModel).collect(Collectors.toList());
     }
