@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,17 +23,17 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     }
 
     @Override
-    public CreateTableResponse createTable() {
+    public CreateTableResponse createTable(String tableName) {
         return dynamoDbClient.createTable(CreateTableRequest.builder()
                 .tableName(tableName)
                 .attributeDefinitions(
                         AttributeDefinition.builder()
-                                .attributeName("UserName")
+                                .attributeName("GameName")
                                 .attributeType("S")
                                 .build())
                 .keySchema(KeySchemaElement.builder()
                         .keyType(KeyType.HASH)
-                        .attributeName("UserName")
+                        .attributeName("GameName")
                         .build())
                 .provisionedThroughput(ProvisionedThroughput.builder().readCapacityUnits(10L).writeCapacityUnits(10L).build())
                 .build());
@@ -51,20 +52,25 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         return new AWSDynamoDBModel(map.get("GameName").s(),
                 map.get("Genre").s(),
                 map.get("Platform").s(),
-                "");
+                "", LocalDate.now(), 1.0f, null, true);
 
     }
 
     @Override
     public void putItem(AWSDynamoDBModel model, String tableName) {
+        boolean hasTable = dynamoDbClient.listTables().tableNames().contains(tableName);
+
+        if(!hasTable){
+            createTable(tableName);
+        }
+
         Map<String, AttributeValue> map = new HashMap();
-        map.put("UserName", AttributeValue.fromS(model.getUserName()));
-        map.put("Genre", AttributeValue.fromS(model.getGenre()));
         map.put("GameName", AttributeValue.fromS(model.getName()));
+        map.put("Genre", AttributeValue.fromS(model.getGenre()));
         map.put("Platform", AttributeValue.fromS(model.getPlatform()));
 
         try {
-            dynamoDbClient.putItem(PutItemRequest.builder().tableName(model.getUserName()).item(map).build());
+            dynamoDbClient.putItem(PutItemRequest.builder().tableName(tableName).item(map).build());
         } catch (Exception e) {
             e.getMessage();
         }

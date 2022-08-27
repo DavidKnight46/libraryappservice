@@ -6,7 +6,7 @@ import software.amazon.awssdk.services.dynamodb.model.CreateTableResponse;
 import java.util.List;
 
 public interface AWSDynamoDBClientGameI {
-    CreateTableResponse createTable();
+    CreateTableResponse createTable(String tableName);
 
     List<AWSDynamoDBModel> getItems(String name);
 
