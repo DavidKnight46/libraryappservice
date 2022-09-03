@@ -3,7 +3,6 @@ package libraryapp.models;
 import lombok.Value;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Value
 public class AWSDynamoDBModel {
@@ -14,6 +13,6 @@ public class AWSDynamoDBModel {
     private String userName;
     private LocalDate releaseDate;
     private Float gameRating;
-    private List<String> imageUrls;
+    private String imageUrl;
     private Boolean isPreOrdered;
 }

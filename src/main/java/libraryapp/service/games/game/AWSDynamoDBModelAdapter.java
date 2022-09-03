@@ -14,7 +14,7 @@ public class AWSDynamoDBModelAdapter {
                 "",
                 gameEntityV2Dto.getReleaseDate(),
                 gameEntityV2Dto.getGameRating(),
-                List.of(gameEntityV2Dto.getImageUrl()),
+                gameEntityV2Dto.getImageUrl(),
                 gameEntityV2Dto.getPreOrdered());
 
     }

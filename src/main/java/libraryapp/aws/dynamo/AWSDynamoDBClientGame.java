@@ -43,7 +43,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     public List<AWSDynamoDBModel> getItems(String userName) {
         ScanResponse scanResponse = dynamoDbClient.scan(ScanRequest.builder()
                 .tableName(userName)
-                .attributesToGet("GameName", "Platform", "Genre").build());
+                .attributesToGet("GameName", "Genre", "Platform", "gameRating", "isPreOrdered", "releaseDate", "imageUrl").build());
 
         return scanResponse.items().stream().map(this::mapToAWSDynamoDBModel).collect(Collectors.toList());
     }
@@ -52,7 +52,11 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         return new AWSDynamoDBModel(map.get("GameName").s(),
                 map.get("Genre").s(),
                 map.get("Platform").s(),
-                "", LocalDate.now(), 1.0f, null, true);
+                "",
+                LocalDate.parse(map.get("releaseDate").s()),
+                Float.valueOf(map.get("gameRating").s()),
+                map.get("imageUrl").s(),
+                map.get("isPreOrdered").bool());
 
     }
 
@@ -71,6 +75,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         map.put("gameRating", AttributeValue.fromS(model.getGameRating().toString()));
         map.put("releaseDate", AttributeValue.fromS(model.getReleaseDate().toString()));
         map.put("isPreOrdered", AttributeValue.fromBool(model.getIsPreOrdered()));
+        map.put("imageUrl", AttributeValue.fromS(model.getImageUrl()));
 
         try {
             dynamoDbClient.putItem(PutItemRequest.builder().tableName(tableName).item(map).build());
