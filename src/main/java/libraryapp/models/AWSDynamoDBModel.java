@@ -8,8 +8,8 @@ import java.util.List;
 @Value
 public class AWSDynamoDBModel {
 
-    private String name;
-    private String genre;
+    private String gameName;
+    private String gameGenre;
     private String platform;
     private String userName;
     private LocalDate releaseDate;

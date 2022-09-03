@@ -65,9 +65,12 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         }
 
         Map<String, AttributeValue> map = new HashMap();
-        map.put("GameName", AttributeValue.fromS(model.getName()));
-        map.put("Genre", AttributeValue.fromS(model.getGenre()));
+        map.put("GameName", AttributeValue.fromS(model.getGameName()));
+        map.put("Genre", AttributeValue.fromS(model.getGameGenre()));
         map.put("Platform", AttributeValue.fromS(model.getPlatform()));
+        map.put("gameRating", AttributeValue.fromS(model.getGameRating().toString()));
+        map.put("releaseDate", AttributeValue.fromS(model.getReleaseDate().toString()));
+        map.put("isPreOrdered", AttributeValue.fromBool(model.getIsPreOrdered()));
 
         try {
             dynamoDbClient.putItem(PutItemRequest.builder().tableName(tableName).item(map).build());
