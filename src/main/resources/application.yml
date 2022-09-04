@@ -1,6 +1,10 @@
 server:
   servlet:
     context-path: /libraryservice
+  port: 5000
+
+aws:
+  endpoint: http://dynamodb.eu-west-2.amazonaws.com:4566
 
 ---
 
