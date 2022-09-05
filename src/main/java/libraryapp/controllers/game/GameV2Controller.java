@@ -4,8 +4,10 @@ import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.games.game.GameServiceImplV2;
 import libraryapp.service.games.game.GameServices;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.OnError;
 import java.util.List;
 
 @RestController
@@ -16,6 +18,12 @@ public class GameV2Controller {
 
     public GameV2Controller(GameServiceImplV2 gameServices) {
         this.gameServices = gameServices;
+    }
+
+    @PostMapping(path = "/checkUserGameTable/{tableName}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public boolean createUserGameTable(@PathVariable(value = "tableName") String tableName){
+        return this.gameServices.createUserGameTable(tableName);
     }
 
     @GetMapping(path = "/getAllGames/{userName}")

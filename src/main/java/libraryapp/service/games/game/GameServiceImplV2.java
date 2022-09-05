@@ -40,6 +40,15 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
+    public boolean createUserGameTable(String tableName) {
+        if(this.dyanmoDbClient.createTable(tableName).sdkHttpResponse().isSuccessful()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
     public List<GameEntityV2Dto> findGamesByDev_Name(String developerName) {
         return null;
     }
