@@ -20,7 +20,7 @@ public class GameV2Controller {
         this.gameServices = gameServices;
     }
 
-    @PostMapping(path = "/checkUserGameTable/{tableName}")
+    @PostMapping(path = "/createUserGameTable/{tableName}")
     @ResponseStatus(HttpStatus.CREATED)
     public boolean createUserGameTable(@PathVariable(value = "tableName") String tableName){
         return this.gameServices.createUserGameTable(tableName);
