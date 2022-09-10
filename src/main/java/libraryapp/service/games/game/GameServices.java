@@ -9,7 +9,8 @@ import java.util.List;
 public interface GameServices extends CollectionService<AWSDynamoDBModel> {
     void addGame(GameEntityV2Dto gameModel);
 
-    List<GameEntityV2Dto> findGamesByDev_Name(String developerName);
+    boolean editGame(GameEntityV2Dto gameModel);
 
-    List<GameEntityV2Dto> findGamesByPub_Name(String developerName);
+    boolean deleteGame();
+
 }

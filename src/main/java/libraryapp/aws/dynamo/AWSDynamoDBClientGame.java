@@ -1,6 +1,7 @@
 package libraryapp.aws.dynamo;
 
 import libraryapp.models.AWSDynamoDBModel;
+import org.apache.el.lang.ExpressionBuilder;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
@@ -42,27 +43,15 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     @Override
     public List<AWSDynamoDBModel> getItems(String userName) {
         Map<String, AttributeValue> map = new HashMap();
-        map.put("userName", AttributeValue.fromS(userName));
+        map.put(":val", AttributeValue.fromS(userName));
 
         ScanResponse scanResponse = dynamoDbClient.scan(ScanRequest.builder()
-                .tableName(userName)
-                .filterExpression(String.format("userName = :%s", userName))
+                .tableName(this.tableName)
+                .filterExpression("userName = :val")
                 .expressionAttributeValues(map)
                 .build());
 
         return scanResponse.items().stream().map(this::mapToAWSDynamoDBModel).collect(Collectors.toList());
-    }
-
-    private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map) {
-        return new AWSDynamoDBModel(map.get("GameName").s(),
-                map.get("Genre").s(),
-                map.get("Platform").s(),
-                "",
-                LocalDate.parse(map.get("releaseDate").s()),
-                Float.valueOf(map.get("gameRating").s()),
-                map.get("imageUrl").s(),
-                map.get("isPreOrdered").bool());
-
     }
 
     @Override
@@ -88,5 +77,27 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         } catch (Exception e) {
             e.getMessage();
         }
+    }
+
+    public void updateItem(){
+        Map<String, AttributeValueUpdate> map = new HashMap<>();
+
+        map.put("", AttributeValueUpdate.builder().build());
+
+        UpdateItemRequest updateItemRequest = UpdateItemRequest.builder().attributeUpdates(map).build();
+        dynamoDbClient.updateItem(updateItemRequest);
+    }
+
+    private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map) {
+        return new AWSDynamoDBModel(map.get("GameName").s(),
+                map.get("Genre").s(),
+                map.get("Platform").s(),
+                map.get("userName").s(),
+                LocalDate.parse(map.get("releaseDate").s()),
+                Float.valueOf(map.get("gameRating").s()),
+                map.get("imageUrl").s(),
+                map.get("isPreOrdered").bool());
+
+
     }
 }
