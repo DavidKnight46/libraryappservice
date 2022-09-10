@@ -21,6 +21,13 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
+    public void addGame(GameEntityV2Dto gameModel) {
+        AWSDynamoDBModelAdapter awsDynamoDBModelAdapter = new AWSDynamoDBModelAdapter();
+
+        this.dyanmoDbClient.putItem(awsDynamoDBModelAdapter.convertTo(gameModel));
+    }
+
+    @Override
     public void editItem(AWSDynamoDBModel item) {
 
     }
@@ -28,24 +35,6 @@ public class GameServiceImplV2 implements GameServices {
     @Override
     public void deleteItem(AWSDynamoDBModel item) {
 
-    }
-
-    @Override
-    public void addGame(GameEntityV2Dto gameModel, String userName) {
-        AWSDynamoDBModelAdapter awsDynamoDBModelAdapter = new AWSDynamoDBModelAdapter();
-
-        AWSDynamoDBModel awsDynamoDBModel = awsDynamoDBModelAdapter.convertTo(gameModel);
-
-        this.dyanmoDbClient.putItem(awsDynamoDBModel, userName);
-    }
-
-    @Override
-    public boolean createUserGameTable(String tableName) {
-        if(this.dyanmoDbClient.createTable(tableName).sdkHttpResponse().isSuccessful()) {
-            return true;
-        } else {
-            return false;
-        }
     }
 
     @Override

@@ -23,9 +23,9 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     }
 
     @Override
-    public CreateTableResponse createTable(String tableName) {
+    public CreateTableResponse createTable() {
         return dynamoDbClient.createTable(CreateTableRequest.builder()
-                .tableName(tableName)
+                .tableName(this.tableName)
                 .attributeDefinitions(
                         AttributeDefinition.builder()
                                 .attributeName("GameName")
@@ -41,14 +41,19 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
 
     @Override
     public List<AWSDynamoDBModel> getItems(String userName) {
+        Map<String, AttributeValue> map = new HashMap();
+        map.put("userName", AttributeValue.fromS(userName));
+
         ScanResponse scanResponse = dynamoDbClient.scan(ScanRequest.builder()
                 .tableName(userName)
-                .attributesToGet("GameName", "Genre", "Platform", "gameRating", "isPreOrdered", "releaseDate", "imageUrl").build());
+                .filterExpression(String.format("userName = :%s", userName))
+                .expressionAttributeValues(map)
+                .build());
 
         return scanResponse.items().stream().map(this::mapToAWSDynamoDBModel).collect(Collectors.toList());
     }
 
-    private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map){
+    private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map) {
         return new AWSDynamoDBModel(map.get("GameName").s(),
                 map.get("Genre").s(),
                 map.get("Platform").s(),
@@ -61,11 +66,11 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     }
 
     @Override
-    public void putItem(AWSDynamoDBModel model, String tableName) {
+    public void putItem(AWSDynamoDBModel model) {
         boolean hasTable = dynamoDbClient.listTables().tableNames().contains(tableName);
 
-        if(!hasTable){
-            createTable(tableName);
+        if (!hasTable) {
+            createTable();
         }
 
         Map<String, AttributeValue> map = new HashMap();
@@ -76,9 +81,10 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         map.put("releaseDate", AttributeValue.fromS(model.getReleaseDate().toString()));
         map.put("isPreOrdered", AttributeValue.fromBool(model.getIsPreOrdered()));
         map.put("imageUrl", AttributeValue.fromS(model.getImageUrl()));
+        map.put("userName", AttributeValue.fromS(model.getUserName()));
 
         try {
-            dynamoDbClient.putItem(PutItemRequest.builder().tableName(tableName).item(map).build());
+            dynamoDbClient.putItem(PutItemRequest.builder().tableName(this.tableName).item(map).build());
         } catch (Exception e) {
             e.getMessage();
         }

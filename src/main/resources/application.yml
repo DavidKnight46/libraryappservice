@@ -5,6 +5,7 @@ server:
 
 aws:
   endpoint: http://dynamodb.eu-west-2.amazonaws.com:4566
+  tableName: libraryServiceCollection
 
 ---
 

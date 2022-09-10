@@ -11,7 +11,6 @@ public class GameEntityV2Dto implements Serializable {
     private Long id;
     private String gameName;
     private String gameGenre;
-
     private Float gameRating;
     private String imageUrl;
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
@@ -20,8 +19,9 @@ public class GameEntityV2Dto implements Serializable {
     private Boolean isPreOrdered;
     private String platform;
     private Integer userid;
+    private String userName;
 
-    public GameEntityV2Dto(Long id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, DeveloperResponse developer, PublisherResponse publisher, String platform, Integer userid) {
+    public GameEntityV2Dto(Long id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, DeveloperResponse developer, PublisherResponse publisher, String platform, Integer userid, String userName) {
         this.id = id;
         this.gameName = gameName;
         this.gameGenre = gameGenre;
@@ -31,6 +31,7 @@ public class GameEntityV2Dto implements Serializable {
         this.isPreOrdered = isPreOrdered;
         this.platform = platform;
         this.userid = userid;
+        this.userName = userName;
     }
 
     public Long getId() {
@@ -103,5 +104,9 @@ public class GameEntityV2Dto implements Serializable {
 
     public void setUserid(Integer userid) {
         this.userid = userid;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

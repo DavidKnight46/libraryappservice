@@ -11,8 +11,8 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 @Configuration
 public class ApplicationConfig {
 
-    @Value("${aws.endpoint}")
-    private String endpointUrl;
+    @Value("${aws.tableName}")
+    private String tableName;
 
     @Bean
     DynamoDbClient createClient() {
@@ -24,11 +24,6 @@ public class ApplicationConfig {
 
     @Bean
     String tableName() {
-        return "test";
-
-    }
-
-    public String getEndpointUrl() {
-        return endpointUrl;
+        return this.tableName;
     }
 }

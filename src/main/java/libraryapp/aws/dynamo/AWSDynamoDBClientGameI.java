@@ -6,10 +6,10 @@ import software.amazon.awssdk.services.dynamodb.model.CreateTableResponse;
 import java.util.List;
 
 public interface AWSDynamoDBClientGameI {
-    CreateTableResponse createTable(String tableName);
+    CreateTableResponse createTable();
 
     List<AWSDynamoDBModel> getItems(String name);
 
-    void putItem(AWSDynamoDBModel model, String tableName);
+    void putItem(AWSDynamoDBModel model);
 
 }

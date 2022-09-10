@@ -4,10 +4,8 @@ import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.games.game.GameServiceImplV2;
 import libraryapp.service.games.game.GameServices;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.OnError;
 import java.util.List;
 
 @RestController
@@ -20,21 +18,14 @@ public class GameV2Controller {
         this.gameServices = gameServices;
     }
 
-    @PostMapping(path = "/createUserGameTable/{tableName}")
-    @ResponseStatus(HttpStatus.CREATED)
-    public boolean createUserGameTable(@PathVariable(value = "tableName") String tableName){
-        return this.gameServices.createUserGameTable(tableName);
-    }
-
     @GetMapping(path = "/getAllGames/{userName}")
     public List<AWSDynamoDBModel> getAllGames(@PathVariable(value = "userName") String userName) {
         return gameServices.getCollection(userName);
     }
 
-    @PostMapping(path = "/addNewGame/{userName}")
-    public void addGame(@RequestBody GameEntityV2Dto gameModelRequest,
-                        @PathVariable(value = "userName") String userName) {
-        gameServices.addGame(gameModelRequest, userName);
+    @PostMapping(path = "/addNewGame")
+    public void addGame(@RequestBody GameEntityV2Dto gameModelRequest) {
+        gameServices.addGame(gameModelRequest);
     }
 
     @PutMapping(path = "/updateGame")
