@@ -9,7 +9,7 @@ import java.util.List;
 public interface GameServices extends CollectionService<AWSDynamoDBModel> {
     void addGame(GameEntityV2Dto gameModel);
 
-    boolean editGame(GameEntityV2Dto gameModel);
+    boolean editGame(AWSDynamoDBModel gameModel);
 
     boolean deleteGame();
 

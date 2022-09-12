@@ -22,7 +22,7 @@ public class GameServiceImplV2 implements GameServices {
 
     @Override
     public void editItem(AWSDynamoDBModel item) {
-
+        dyanmoDbClient.updateItem(item, item.getUserName());
     }
 
     @Override
@@ -38,8 +38,9 @@ public class GameServiceImplV2 implements GameServices {
     }
 
     @Override
-    public boolean editGame(GameEntityV2Dto gameModel) {
-        return false;
+    public boolean editGame(AWSDynamoDBModel gameModel) {
+        dyanmoDbClient.updateItem(gameModel, gameModel.getUserName());
+        return true;
     }
 
     @Override

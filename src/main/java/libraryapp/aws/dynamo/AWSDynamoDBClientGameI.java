@@ -12,4 +12,6 @@ public interface AWSDynamoDBClientGameI {
 
     void putItem(AWSDynamoDBModel model);
 
+    void updateItem(AWSDynamoDBModel model, String userName);
+
 }

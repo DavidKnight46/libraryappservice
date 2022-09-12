@@ -29,8 +29,8 @@ public class GameV2Controller {
     }
 
     @PutMapping(path = "/updateGame")
-    public void updateGame(@RequestBody GameEntityV2Dto gameModelRequest) {
-        //gameServices.editItem(gameModelRequest);
+    public void updateGame(@RequestBody AWSDynamoDBModel gameModelRequest) {
+        gameServices.editGame(gameModelRequest);
     }
 
     @DeleteMapping(path = "/deleteGame")

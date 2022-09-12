@@ -62,6 +62,54 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
             createTable();
         }
 
+        try {
+            dynamoDbClient.putItem(PutItemRequest.builder()
+                    .tableName(this.tableName)
+                    .item(createAttributeMap(model))
+                    .build());
+
+        } catch (Exception e) {
+            e.getMessage();
+        }
+    }
+
+    @Override
+    public void updateItem(AWSDynamoDBModel model, String userName){
+        Map<String, AttributeValue> keyMap = new HashMap();
+        keyMap.put("GameName", AttributeValue.fromS(model.getGameName()));
+
+        UpdateItemRequest updateItemRequest = UpdateItemRequest.builder()
+                .tableName(this.tableName)
+                .key(keyMap)
+                .attributeUpdates(createAttributeMapUpdate(model))
+                .build();
+
+        dynamoDbClient.updateItem(updateItemRequest);
+    }
+
+    private Map<String, AttributeValueUpdate> createAttributeMapUpdate(AWSDynamoDBModel model){
+        Map<String, AttributeValueUpdate> map = new HashMap();
+
+        map.put("Genre", createAttributeValue(model.getGameGenre()));
+        map.put("Platform", createAttributeValue(model.getPlatform()));
+        map.put("gameRating", createAttributeValue(Float.toString(model.getGameRating())));
+        map.put("releaseDate", createAttributeValue(model.getReleaseDate().toString()));
+        map.put("isPreOrdered", createAttributeValue(model.getIsPreOrdered()));
+        map.put("imageUrl", createAttributeValue(model.getImageUrl()));
+        map.put("userName", createAttributeValue(model.getUserName()));
+
+        return map;
+    }
+
+    private AttributeValueUpdate createAttributeValue(String value){
+        return AttributeValueUpdate.builder().value(AttributeValue.builder().s(value).build()).action("PUT").build();
+    }
+
+    private AttributeValueUpdate createAttributeValue(boolean value){
+        return AttributeValueUpdate.builder().value(AttributeValue.builder().bool(value).build()).action("PUT").build();
+    }
+
+    private Map<String, AttributeValue> createAttributeMap(AWSDynamoDBModel model){
         Map<String, AttributeValue> map = new HashMap();
         map.put("GameName", AttributeValue.fromS(model.getGameName()));
         map.put("Genre", AttributeValue.fromS(model.getGameGenre()));
@@ -72,20 +120,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         map.put("imageUrl", AttributeValue.fromS(model.getImageUrl()));
         map.put("userName", AttributeValue.fromS(model.getUserName()));
 
-        try {
-            dynamoDbClient.putItem(PutItemRequest.builder().tableName(this.tableName).item(map).build());
-        } catch (Exception e) {
-            e.getMessage();
-        }
-    }
-
-    public void updateItem(){
-        Map<String, AttributeValueUpdate> map = new HashMap<>();
-
-        map.put("", AttributeValueUpdate.builder().build());
-
-        UpdateItemRequest updateItemRequest = UpdateItemRequest.builder().attributeUpdates(map).build();
-        dynamoDbClient.updateItem(updateItemRequest);
+        return map;
     }
 
     private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map) {
@@ -97,7 +132,5 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
                 Float.valueOf(map.get("gameRating").s()),
                 map.get("imageUrl").s(),
                 map.get("isPreOrdered").bool());
-
-
     }
 }
