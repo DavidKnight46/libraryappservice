@@ -1,6 +1,5 @@
 package libraryapp.controllers.game;
 
-import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.games.game.GameServiceImplV2;
 import libraryapp.service.games.game.GameServices;
@@ -24,17 +23,17 @@ public class GameV2Controller {
     }
 
     @PostMapping(path = "/addNewGame")
-    public void addGame(@RequestBody GameEntityV2Dto gameModelRequest) {
-        gameServices.addGame(gameModelRequest);
+    public void addGame(@RequestBody AWSDynamoDBModel gameModel) {
+        gameServices.addItem(gameModel);
     }
 
     @PutMapping(path = "/updateGame")
     public void updateGame(@RequestBody AWSDynamoDBModel gameModelRequest) {
-        gameServices.editGame(gameModelRequest);
+        gameServices.editItem(gameModelRequest);
     }
 
     @DeleteMapping(path = "/deleteGame")
-    public void deleteGame(@RequestBody GameEntityV2Dto gameEntityV2Dto) {
-        //gameServices.deleteItem(gameEntityV2Dto);
+    public void deleteGame(@RequestBody AWSDynamoDBModel gameModel) {
+        gameServices.deleteItem(gameModel);
     }
 }

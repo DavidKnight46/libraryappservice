@@ -1,10 +1,9 @@
 package libraryapp.service;
 
-import libraryapp.dto.GameEntityV2Dto;
-
 import java.util.List;
 
 public interface CollectionService<T> {
+    void addItem(T gameModel);
 
     List<T> getCollection(String userName);
 

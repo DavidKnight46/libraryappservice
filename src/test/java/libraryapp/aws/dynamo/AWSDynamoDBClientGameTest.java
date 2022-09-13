@@ -8,8 +8,6 @@ import software.amazon.awssdk.auth.credentials.DefaultCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
 //@ExtendWith(SpringExtension.class)
 //@SpringBootTest
 class AWSDynamoDBClientGameTest {

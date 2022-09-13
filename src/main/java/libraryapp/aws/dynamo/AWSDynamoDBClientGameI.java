@@ -14,4 +14,6 @@ public interface AWSDynamoDBClientGameI {
 
     void updateItem(AWSDynamoDBModel model, String userName);
 
+    void deleteItem(AWSDynamoDBModel model);
+
 }

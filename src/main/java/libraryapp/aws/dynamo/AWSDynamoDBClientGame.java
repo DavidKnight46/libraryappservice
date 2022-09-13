@@ -1,7 +1,6 @@
 package libraryapp.aws.dynamo;
 
 import libraryapp.models.AWSDynamoDBModel;
-import org.apache.el.lang.ExpressionBuilder;
 import org.springframework.stereotype.Component;
 import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import software.amazon.awssdk.services.dynamodb.model.*;
@@ -85,6 +84,23 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
                 .build();
 
         dynamoDbClient.updateItem(updateItemRequest);
+    }
+
+    @Override
+    public void deleteItem(AWSDynamoDBModel model) {
+        createAttributeValueMap("GameName", model.getGameName());
+
+        DeleteItemRequest deleteItemRequest = DeleteItemRequest.builder()
+                .tableName(this.tableName)
+                .key(createAttributeMap(model))
+                .build();
+
+        dynamoDbClient.deleteItem(deleteItemRequest);
+    }
+
+    private static void createAttributeValueMap(String GameName, String model) {
+        Map<String, AttributeValue> keyMap = new HashMap();
+        keyMap.put(GameName, AttributeValue.fromS(model));
     }
 
     private Map<String, AttributeValueUpdate> createAttributeMapUpdate(AWSDynamoDBModel model){
