@@ -84,6 +84,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     public void updateItem(AWSDynamoDBModel model) {
         Map<String, AttributeValue> keyMap = new HashMap();
         keyMap.put("GameName", AttributeValue.fromS(model.getGameName()));
+        keyMap.put("userName", AttributeValue.fromS(model.getUserName()));
 
         UpdateItemRequest updateItemRequest = UpdateItemRequest.builder()
                 .tableName(this.tableName)
@@ -121,7 +122,6 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         map.put("releaseDate", createAttributeValue(model.getReleaseDate().toString()));
         map.put("isPreOrdered", createAttributeValue(model.getIsPreOrdered()));
         map.put("imageUrl", createAttributeValue(model.getImageUrl()));
-        map.put("userName", createAttributeValue(model.getUserName()));
 
         return map;
     }
