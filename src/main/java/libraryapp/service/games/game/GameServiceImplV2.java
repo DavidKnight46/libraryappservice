@@ -21,12 +21,12 @@ public class GameServiceImplV2 implements GameServices {
 
     @Override
     public void editItem(AWSDynamoDBModel item) {
-        dyanmoDbClient.updateItem(item, item.getUserName());
+        dyanmoDbClient.updateItem(item);
     }
 
     @Override
-    public void deleteItem(AWSDynamoDBModel item) {
-        dyanmoDbClient.deleteItem(item);
+    public void deleteGame(String userName, String gameName) {
+        dyanmoDbClient.deleteItem(userName, gameName);
     }
 
     @Override

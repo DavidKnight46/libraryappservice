@@ -33,7 +33,7 @@ public class GameV2Controller {
     }
 
     @DeleteMapping(path = "/deleteGame")
-    public void deleteGame(@RequestBody AWSDynamoDBModel gameModel) {
-        gameServices.deleteItem(gameModel);
+    public void deleteGame(@RequestParam(value = "userName") String userName, @RequestParam(value = "gameName") String gameName) {
+        gameServices.deleteGame(userName, gameName);
     }
 }

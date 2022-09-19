@@ -30,11 +30,19 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
                         AttributeDefinition.builder()
                                 .attributeName("GameName")
                                 .attributeType("S")
+                                .build(),
+                        AttributeDefinition.builder()
+                                .attributeName("userName")
+                                .attributeType("S")
                                 .build())
                 .keySchema(KeySchemaElement.builder()
-                        .keyType(KeyType.HASH)
-                        .attributeName("GameName")
-                        .build())
+                                .keyType(KeyType.HASH)
+                                .attributeName("GameName")
+                                .build(),
+                        KeySchemaElement.builder()
+                                .keyType(KeyType.RANGE)
+                                .attributeName("userName")
+                                .build())
                 .provisionedThroughput(ProvisionedThroughput.builder().readCapacityUnits(10L).writeCapacityUnits(10L).build())
                 .build());
     }
@@ -73,7 +81,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     }
 
     @Override
-    public void updateItem(AWSDynamoDBModel model, String userName){
+    public void updateItem(AWSDynamoDBModel model) {
         Map<String, AttributeValue> keyMap = new HashMap();
         keyMap.put("GameName", AttributeValue.fromS(model.getGameName()));
 
@@ -87,23 +95,24 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
     }
 
     @Override
-    public void deleteItem(AWSDynamoDBModel model) {
-        createAttributeValueMap("GameName", model.getGameName());
+    public void deleteItem(String userName, String gameName) {
+        HashMap<String, AttributeValue> keyMap = new HashMap();
+        createAttributeValueMap(keyMap, "GameName", gameName);
+        createAttributeValueMap(keyMap, "userName", userName);
 
         DeleteItemRequest deleteItemRequest = DeleteItemRequest.builder()
                 .tableName(this.tableName)
-                .key(createAttributeMap(model))
+                .key(keyMap)
                 .build();
 
         dynamoDbClient.deleteItem(deleteItemRequest);
     }
 
-    private static void createAttributeValueMap(String GameName, String model) {
-        Map<String, AttributeValue> keyMap = new HashMap();
+    private static void createAttributeValueMap(Map<String, AttributeValue> keyMap, String GameName, String model) {
         keyMap.put(GameName, AttributeValue.fromS(model));
     }
 
-    private Map<String, AttributeValueUpdate> createAttributeMapUpdate(AWSDynamoDBModel model){
+    private Map<String, AttributeValueUpdate> createAttributeMapUpdate(AWSDynamoDBModel model) {
         Map<String, AttributeValueUpdate> map = new HashMap();
 
         map.put("Genre", createAttributeValue(model.getGameGenre()));
@@ -117,15 +126,7 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         return map;
     }
 
-    private AttributeValueUpdate createAttributeValue(String value){
-        return AttributeValueUpdate.builder().value(AttributeValue.builder().s(value).build()).action("PUT").build();
-    }
-
-    private AttributeValueUpdate createAttributeValue(boolean value){
-        return AttributeValueUpdate.builder().value(AttributeValue.builder().bool(value).build()).action("PUT").build();
-    }
-
-    private Map<String, AttributeValue> createAttributeMap(AWSDynamoDBModel model){
+    private Map<String, AttributeValue> createAttributeMap(AWSDynamoDBModel model) {
         Map<String, AttributeValue> map = new HashMap();
         map.put("GameName", AttributeValue.fromS(model.getGameName()));
         map.put("Genre", AttributeValue.fromS(model.getGameGenre()));
@@ -137,6 +138,14 @@ public class AWSDynamoDBClientGame implements AWSDynamoDBClientGameI {
         map.put("userName", AttributeValue.fromS(model.getUserName()));
 
         return map;
+    }
+
+    private AttributeValueUpdate createAttributeValue(String value) {
+        return AttributeValueUpdate.builder().value(AttributeValue.builder().s(value).build()).action("PUT").build();
+    }
+
+    private AttributeValueUpdate createAttributeValue(boolean value) {
+        return AttributeValueUpdate.builder().value(AttributeValue.builder().bool(value).build()).action("PUT").build();
     }
 
     private AWSDynamoDBModel mapToAWSDynamoDBModel(Map<String, AttributeValue> map) {

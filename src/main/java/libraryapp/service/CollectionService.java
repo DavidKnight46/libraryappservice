@@ -9,5 +9,5 @@ public interface CollectionService<T> {
 
     void editItem(T item);
 
-    void deleteItem(T item);
+    //void deleteItem(T item);
 }
