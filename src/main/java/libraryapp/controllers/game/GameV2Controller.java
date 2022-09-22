@@ -32,8 +32,8 @@ public class GameV2Controller {
         gameServices.editItem(gameModelRequest);
     }
 
-    @DeleteMapping(path = "/deleteGame")
-    public void deleteGame(@RequestParam(value = "userName") String userName, @RequestParam(value = "gameName") String gameName) {
+    @DeleteMapping(path = "/deleteGame/{userName}/{gameName}")
+    public void deleteGame(@PathVariable(value = "userName") String userName, @PathVariable(value = "gameName") String gameName) {
         gameServices.deleteGame(userName, gameName);
     }
 }
