@@ -14,26 +14,6 @@ public class GameResponse {
 
     private LocalDate releaseDate;
 
-    private DeveloperResponse developer;
-
-    private PublisherResponse publisher;
-
-    public DeveloperResponse getDeveloper() {
-        return developer;
-    }
-
-    public void setDeveloper(DeveloperResponse developer) {
-        this.developer = developer;
-    }
-
-    public PublisherResponse getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(PublisherResponse publisher) {
-        this.publisher = publisher;
-    }
-
     public String getGameName() {
         return gameName;
     }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 @JsonDeserialize(builder = DeveloperResponse.DeveloperModelBuilder.class)
 public class DeveloperResponse {
 
-    private String name;
+    private final String name;
 
     public DeveloperResponse(String name) {
         this.name = name;

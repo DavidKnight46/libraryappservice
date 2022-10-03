@@ -21,7 +21,7 @@ public class PublisherResponse {
 
         private String name;
 
-        public PublisherResponse build(){
+        public PublisherResponse build() {
             return new PublisherResponse(name);
         }
 

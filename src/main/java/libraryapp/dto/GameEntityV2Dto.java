@@ -2,26 +2,26 @@ package libraryapp.dto;
 
 import libraryapp.models.response.DeveloperResponse;
 import libraryapp.models.response.PublisherResponse;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 
-//@Data
 public class GameEntityV2Dto implements Serializable {
-    private final Integer id;
-    private final String gameName;
-    private final String gameGenre;
-    private final Float gameRating;
-    private final String imageUrl;
-    private final LocalDate releaseDate;
-    private final Boolean isPreOrdered;
-    private final UserEntityDto user;
-    private final DeveloperResponse developer;
-    private final PublisherResponse publisher;
+    private Long id;
+    private String gameName;
+    private String gameGenre;
+    private Float gameRating;
+    private String imageUrl;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE, pattern = "yyyy-MM-dd")
 
-    public GameEntityV2Dto(Integer id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, UserEntityDto user, DeveloperResponse developer, PublisherResponse publisher) {
+    private LocalDate releaseDate;
+    private Boolean isPreOrdered;
+    private String platform;
+    private Integer userid;
+    private String userName;
+
+    public GameEntityV2Dto(Long id, String gameName, String gameGenre, Float gameRating, String imageUrl, LocalDate releaseDate, Boolean isPreOrdered, DeveloperResponse developer, PublisherResponse publisher, String platform, Integer userid, String userName) {
         this.id = id;
         this.gameName = gameName;
         this.gameGenre = gameGenre;
@@ -29,13 +29,17 @@ public class GameEntityV2Dto implements Serializable {
         this.imageUrl = imageUrl;
         this.releaseDate = releaseDate;
         this.isPreOrdered = isPreOrdered;
-        this.user = user;
-        this.developer = developer;
-        this.publisher = publisher;
+        this.platform = platform;
+        this.userid = userid;
+        this.userName = userName;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getGameName() {
@@ -62,15 +66,47 @@ public class GameEntityV2Dto implements Serializable {
         return isPreOrdered;
     }
 
-    public UserEntityDto getUser() {
-        return user;
+    public void setGameName(String gameName) {
+        this.gameName = gameName;
     }
 
-    public DeveloperResponse getDeveloper() {
-        return developer;
+    public void setGameGenre(String gameGenre) {
+        this.gameGenre = gameGenre;
     }
 
-    public PublisherResponse getPublisher() {
-        return publisher;
+    public void setGameRating(Float gameRating) {
+        this.gameRating = gameRating;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public void setReleaseDate(LocalDate releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public void setPreOrdered(Boolean preOrdered) {
+        isPreOrdered = preOrdered;
+    }
+
+    public String getPlatform() {
+        return platform;
+    }
+
+    public void setPlatform(String platform) {
+        this.platform = platform;
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }

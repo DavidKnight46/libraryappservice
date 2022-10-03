@@ -6,7 +6,7 @@ public enum SortBy {
     RATING("rating"),
     RELEASE_DATE("release_date");
 
-    private String sortBy;
+    private final String sortBy;
 
     SortBy(String sortBy) {
         this.sortBy = sortBy;

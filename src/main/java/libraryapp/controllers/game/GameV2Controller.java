@@ -1,9 +1,6 @@
 package libraryapp.controllers.game;
 
-import libraryapp.models.request.GameModelRequest;
-import libraryapp.models.response.GameResponse;
-import libraryapp.service.Order;
-import libraryapp.service.SortBy;
+import libraryapp.models.AWSDynamoDBModel;
 import libraryapp.service.games.game.GameServiceImplV2;
 import libraryapp.service.games.game.GameServices;
 import org.springframework.web.bind.annotation.*;
@@ -20,19 +17,23 @@ public class GameV2Controller {
         this.gameServices = gameServices;
     }
 
-    @GetMapping(path = "/getAllGames/{id}")
-    public List<GameResponse> getAllGames(@PathVariable(value = "id") String id){
-
-        return gameServices.getCollection(SortBy.NAME, Order.DESC, Integer.parseInt(id));
-        //return null;
+    @GetMapping(path = "/getAllGames/{userName}")
+    public List<AWSDynamoDBModel> getAllGames(@PathVariable(value = "userName") String userName) {
+        return gameServices.getCollection(userName);
     }
 
     @PostMapping(path = "/addNewGame")
-    public void addGame(GameModelRequest gameModelRequest){}
+    public void addGame(@RequestBody AWSDynamoDBModel gameModel) {
+        gameServices.addItem(gameModel);
+    }
 
     @PutMapping(path = "/updateGame")
-    public void updateGame(GameModelRequest gameModelRequest){}
+    public void updateGame(@RequestBody AWSDynamoDBModel gameModelRequest) {
+        gameServices.editItem(gameModelRequest);
+    }
 
-    @DeleteMapping(path = "/deleteGame")
-    public void deleteGame(GameModelRequest gameModelRequest){}
+    @DeleteMapping(path = "/deleteGame/{userName}/{gameName}")
+    public void deleteGame(@PathVariable(value = "userName") String userName, @PathVariable(value = "gameName") String gameName) {
+        gameServices.deleteGame(userName, gameName);
+    }
 }
