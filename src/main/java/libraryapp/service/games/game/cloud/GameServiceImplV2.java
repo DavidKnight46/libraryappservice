@@ -1,4 +1,4 @@
-package libraryapp.service.games.game;
+package libraryapp.service.games.game.cloud;
 
 import libraryapp.aws.dynamo.AWSDynamoDBClientGame;
 import libraryapp.models.AWSDynamoDBModel;

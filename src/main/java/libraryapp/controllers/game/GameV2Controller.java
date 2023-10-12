@@ -1,8 +1,8 @@
 package libraryapp.controllers.game;
 
 import libraryapp.models.AWSDynamoDBModel;
-import libraryapp.service.games.game.GameServiceImplV2;
-import libraryapp.service.games.game.GameServices;
+import libraryapp.service.games.game.cloud.GameServiceImplV2;
+import libraryapp.service.games.game.cloud.GameServices;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

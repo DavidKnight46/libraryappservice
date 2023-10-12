@@ -15,7 +15,19 @@ public class GameEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column
+    @Column(name = "gamename")
     public String gameName;
+
+    @Column
+    public Integer rating;
+
+    @Column(name = "releasedate")
+    public String releaseDate;
+
+    @Column(name = "imageurl")
+    public String imageUrl;
+
+    @Column(name = "ispreordered")
+    public boolean isPreOrdered;
 
 }

@@ -1,4 +1,4 @@
-package libraryapp.service.games.game;
+package libraryapp.service.games.game.cloud;
 
 import libraryapp.dto.GameEntityV2Dto;
 import libraryapp.models.AWSDynamoDBModel;

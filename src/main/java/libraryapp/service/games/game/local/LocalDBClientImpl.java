@@ -1,14 +1,27 @@
 package libraryapp.service.games.game.local;
 
 import libraryapp.database.GameEntity;
+import libraryapp.database.GamestableRepo;
+import lombok.val;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class LocalDBClientImpl implements LocalDBClient{
+
+    private final GamestableRepo gamestableRepo;
+
+    public LocalDBClientImpl(GamestableRepo gamestableRepo){
+        this.gamestableRepo = gamestableRepo;
+    }
+
     @Override
     public Optional<List<GameEntity>> getAllGames() {
-        return Optional.empty();
+        List<GameEntity> all = (List<GameEntity>) gamestableRepo.findAll();
+
+        return Optional.ofNullable(all);
     }
 
     @Override
