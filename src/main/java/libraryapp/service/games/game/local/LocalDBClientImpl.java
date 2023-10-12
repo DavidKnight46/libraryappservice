@@ -18,10 +18,13 @@ public class LocalDBClientImpl implements LocalDBClient{
     }
 
     @Override
-    public Optional<List<GameEntity>> getAllGames() {
-        List<GameEntity> all = (List<GameEntity>) gamestableRepo.findAll();
+    public void addAnGame(GameEntity entity) {
+        gamestableRepo.save(entity);
+    }
 
-        return Optional.ofNullable(all);
+    @Override
+    public Optional<List<GameEntity>> getAllGames() {
+        return Optional.ofNullable((List<GameEntity>) gamestableRepo.findAll());
     }
 
     @Override

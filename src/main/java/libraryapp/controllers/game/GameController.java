@@ -2,9 +2,8 @@ package libraryapp.controllers.game;
 
 import libraryapp.database.GameEntity;
 import libraryapp.service.games.game.local.LocalGameService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -18,8 +17,13 @@ public class GameController {
         this.localGameService = localGameService;
     }
 
-    @GetMapping(path = "/foo")
+    @GetMapping(path = "/getAllGames")
     public Optional<List<GameEntity>> getAllGames() {
         return localGameService.getAllGames();
+    }
+
+    @PostMapping(path = "/addGame")
+    public void addGame(@RequestBody GameEntity game){
+        localGameService.addAGame(game);
     }
 }

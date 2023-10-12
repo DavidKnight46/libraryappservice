@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface LocalDBClient {
+
+    void addAnGame(GameEntity entity);
+
     Optional<List<GameEntity>> getAllGames();
 
     Optional<GameEntity> getAnGame();

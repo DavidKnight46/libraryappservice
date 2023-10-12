@@ -12,7 +12,7 @@ import javax.persistence.Column;
 public class GameEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "gamename")

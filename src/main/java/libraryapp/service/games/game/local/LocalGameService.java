@@ -18,4 +18,8 @@ public class LocalGameService {
     public Optional<List<GameEntity>> getAllGames(){
         return localDBClient.getAllGames();
     }
+
+    public void addAGame(GameEntity entity){
+        this.localDBClient.addAnGame(entity);
+    }
 }
