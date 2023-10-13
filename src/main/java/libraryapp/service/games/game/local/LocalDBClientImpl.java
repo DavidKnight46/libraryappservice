@@ -2,7 +2,6 @@ package libraryapp.service.games.game.local;
 
 import libraryapp.database.GameEntity;
 import libraryapp.database.GamestableRepo;
-import lombok.val;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -34,7 +33,7 @@ public class LocalDBClientImpl implements LocalDBClient{
 
     @Override
     public void editAnGame(GameEntity game) {
-
+        gamestableRepo.save(game);
     }
 
     @Override

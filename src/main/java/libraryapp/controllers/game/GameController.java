@@ -1,9 +1,10 @@
 package libraryapp.controllers.game;
 
 import libraryapp.database.GameEntity;
+import libraryapp.dto.GameDTO;
+import libraryapp.service.GameToEntity;
 import libraryapp.service.games.game.local.LocalGameService;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -25,5 +26,10 @@ public class GameController {
     @PostMapping(path = "/addGame")
     public void addGame(@RequestBody GameEntity game){
         localGameService.addAGame(game);
+    }
+
+    @PutMapping(path = "/updateGame")
+    public void editgame(@RequestBody GameDTO game){
+        localGameService.editAnGame(GameToEntity.INSTANCE.GameDTOToGameEntity(game));
     }
 }

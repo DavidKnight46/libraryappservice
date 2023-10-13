@@ -22,4 +22,8 @@ public class LocalGameService {
     public void addAGame(GameEntity entity){
         this.localDBClient.addAnGame(entity);
     }
+
+    public void editAnGame(GameEntity entity){
+        this.localDBClient.editAnGame(entity);
+    }
 }
