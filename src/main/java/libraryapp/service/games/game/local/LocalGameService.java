@@ -1,6 +1,5 @@
 package libraryapp.service.games.game.local;
 
-import libraryapp.database.GameEntity;
 import libraryapp.dto.GameDTO;
 import org.springframework.stereotype.Service;
 

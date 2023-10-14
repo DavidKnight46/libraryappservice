@@ -1,10 +1,9 @@
 package libraryapp.controllers.game;
 
-import libraryapp.database.GameEntity;
 import libraryapp.dto.GameDTO;
-import libraryapp.service.GameToEntity;
 import libraryapp.service.games.game.local.LocalGameService;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 import java.util.Optional;
 
