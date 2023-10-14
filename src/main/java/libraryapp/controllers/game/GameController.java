@@ -19,17 +19,17 @@ public class GameController {
     }
 
     @GetMapping(path = "/getAllGames")
-    public Optional<List<GameEntity>> getAllGames() {
+    public Optional<List<GameDTO>> getAllGames() {
         return localGameService.getAllGames();
     }
 
     @PostMapping(path = "/addGame")
-    public void addGame(@RequestBody GameEntity game){
+    public void addGame(@RequestBody GameDTO game){
         localGameService.addAGame(game);
     }
 
     @PutMapping(path = "/updateGame")
     public void editgame(@RequestBody GameDTO game){
-        localGameService.editAnGame(GameToEntity.INSTANCE.GameDTOToGameEntity(game));
+        localGameService.editAnGame(game);
     }
 }

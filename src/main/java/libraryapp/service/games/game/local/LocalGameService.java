@@ -1,6 +1,7 @@
 package libraryapp.service.games.game.local;
 
 import libraryapp.database.GameEntity;
+import libraryapp.dto.GameDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +16,15 @@ public class LocalGameService {
         this.localDBClient = localDBClient;
     }
 
-    public Optional<List<GameEntity>> getAllGames(){
+    public Optional<List<GameDTO>> getAllGames(){
         return localDBClient.getAllGames();
     }
 
-    public void addAGame(GameEntity entity){
+    public void addAGame(GameDTO entity){
         this.localDBClient.addAnGame(entity);
     }
 
-    public void editAnGame(GameEntity entity){
+    public void editAnGame(GameDTO entity){
         this.localDBClient.editAnGame(entity);
     }
 }

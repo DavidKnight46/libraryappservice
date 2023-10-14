@@ -2,10 +2,14 @@ package libraryapp.service.games.game.local;
 
 import libraryapp.database.GameEntity;
 import libraryapp.database.GamestableRepo;
+import libraryapp.dto.GameDTO;
+import libraryapp.service.GameToEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Optional;
+
+import static java.util.stream.Collectors.toList;
 
 @Component
 public class LocalDBClientImpl implements LocalDBClient{
@@ -17,13 +21,20 @@ public class LocalDBClientImpl implements LocalDBClient{
     }
 
     @Override
-    public void addAnGame(GameEntity entity) {
-        gamestableRepo.save(entity);
+    public void addAnGame(GameDTO entity) {
+        gamestableRepo.save(GameToEntity.INSTANCE.GameDTOToGameEntity(entity));
     }
 
     @Override
-    public Optional<List<GameEntity>> getAllGames() {
-        return Optional.ofNullable((List<GameEntity>) gamestableRepo.findAll());
+    public Optional<List<GameDTO>> getAllGames() {
+        List<GameEntity> list = (List<GameEntity>) gamestableRepo.findAll();
+        var f = list.stream().map(e -> createGameDTO(e)).toList();
+
+        return Optional.of(f);
+    }
+
+    public GameDTO createGameDTO(GameEntity e){
+        return GameToEntity.INSTANCE.GameEntityToGameDTO(e);
     }
 
     @Override
@@ -32,8 +43,8 @@ public class LocalDBClientImpl implements LocalDBClient{
     }
 
     @Override
-    public void editAnGame(GameEntity game) {
-        gamestableRepo.save(game);
+    public void editAnGame(GameDTO game) {
+        gamestableRepo.save(GameToEntity.INSTANCE.GameDTOToGameEntity(game));
     }
 
     @Override

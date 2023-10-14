@@ -13,4 +13,7 @@ public interface GameToEntity {
 
     @Mapping(target = "isPreOrdered", source = "preOrdered")
     GameEntity GameDTOToGameEntity(GameDTO entity);
+
+    @Mapping(target = "preOrdered", source = "isPreOrdered")
+    GameDTO GameEntityToGameDTO(GameEntity entity);
 }
